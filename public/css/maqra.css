@@ -1,0 +1,49 @@
+/* المقرأة — page-specific styles */
+.prog { margin-bottom: var(--space-4); }
+.prog h3 small, .prog h4 small { font-family: var(--font-body); font-size: .8em; font-weight: 400; color: var(--ink-2); }
+.prog h4 { font-size: 1.15rem; margin: var(--space-4) 0 var(--space-2); }
+.prog__list { margin: 0; }
+.prog .badge { margin-bottom: var(--space-2); }
+.prog .table { min-width: 0; }
+.prog .table th { white-space: normal; }
+@media (max-width: 520px) { .prog .table th, .prog .table td { padding: .6rem .6rem; font-size: .95rem; } }
+.total {
+  display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin: var(--space-3) 0 0;
+  background: var(--green-600); color: var(--white); border-radius: var(--r-sm); padding: .6rem 1rem;
+}
+.total strong { font-family: var(--font-head); font-size: 1.3rem; }
+
+.calc { max-width: 820px; margin-inline: auto; background: rgba(255,255,255,.07); border: 1px solid rgba(232,210,154,.35); border-radius: var(--r-lg); padding: var(--space-4); }
+.calc label { color: var(--white); }
+.calc__fields { display: grid; gap: var(--space-3); }
+@media (min-width: 640px) { .calc__fields { grid-template-columns: 1fr 1fr; } }
+.calc__stats { display: grid; gap: var(--space-3); }
+@media (min-width: 640px) { .calc__stats { grid-template-columns: repeat(3, 1fr); } }
+.calc__stat { background: var(--white); color: var(--green-800); border-radius: var(--r-md); padding: var(--space-3); text-align: center; }
+.calc__stat strong { display: block; font-family: var(--font-head); font-size: 1.35rem; line-height: 1.6; }
+.calc__label { display: block; color: var(--ink-2); font-size: .95rem; }
+.calc__finish { margin: var(--space-3) 0 var(--space-2); font-size: 1.15rem; }
+.calc__finish strong { color: var(--gold-300); font-family: var(--font-head); }
+.calc__note { color: #c9dccf; font-size: .95rem; margin-bottom: var(--space-2); }
+.calc__disclaimer { font-size: .9rem; color: #c9dccf; border-top: 1px dashed rgba(255,255,255,.25); padding-top: var(--space-3); margin: var(--space-3) 0 0; }
+
+/* ---- animations ---- */
+.tabpanel:not([hidden]) { animation: panel-in .5s var(--ease-out) both; }
+@keyframes panel-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.prog { transition: box-shadow .3s, transform .3s var(--ease-out); }
+.prog:hover { box-shadow: var(--shadow-md, 0 12px 28px rgba(30,58,44,.14)); }
+.table tbody tr { transition: background .25s; }
+.table tbody tr:hover { background: var(--mint-50); }
+.tabs [role="tab"] { transition: background .25s, color .25s, border-color .25s, transform .25s var(--ease-out); }
+.tabs [role="tab"]:hover { transform: translateY(-2px); }
+.calc__stat { transition: transform .3s var(--ease-out), box-shadow .3s; }
+.calc__stat:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+.calc__stat strong.is-pop, .calc__finish strong.is-pop { animation: calc-pop .5s var(--ease-out); }
+@keyframes calc-pop { 0% { opacity: .2; transform: translateY(10px) scale(.94); } 100% { opacity: 1; transform: none; } }
+.calc__bar { height: 8px; margin-top: var(--space-3); border-radius: 99px; background: rgba(255,255,255,.15); overflow: hidden; }
+.calc__bar span { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(to left, var(--gold-500), var(--teal-500)); transform-origin: right; transition: width 1s var(--ease-out); }
+@media (prefers-reduced-motion: reduce) {
+  .tabpanel:not([hidden]), .calc__stat strong.is-pop, .calc__finish strong.is-pop { animation: none; }
+  .calc__bar span { transition: none; }
+  .calc__stat:hover, .tabs [role="tab"]:hover { transform: none; }
+}

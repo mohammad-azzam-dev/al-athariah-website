@@ -1,0 +1,45 @@
+/* الكلية الأثرية — page styles */
+.level-card { text-align: start; display: block; }
+.level-card h3 { margin-top: .5rem; }
+.level-card__more { display: inline-block; margin-top: .5rem; color: var(--green-600); font-weight: 600; transition: transform .3s var(--ease-out); }
+.level-card:hover .level-card__more { transform: translateX(-6px); }
+.college-tools { display: grid; gap: var(--space-3); margin-bottom: var(--space-4); }
+.college-tools .tabs { margin-bottom: 0; }
+.college-filter { margin: 0; max-width: 520px; }
+.college-filter__status { margin: .3rem 0 0; font-size: .9rem; color: var(--ink-2); min-height: 1.5em; }
+.panel-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin-bottom: var(--space-3); }
+.panel-head h3 { margin: 0; }
+.lead { font-family: var(--font-head); font-size: 1.15rem; color: var(--green-800); margin-bottom: .25rem; }
+.college-grads { color: var(--green-600); font-weight: 600; }
+.college-note { margin-top: var(--space-3); }
+.college-note--bar { background: var(--green-600); color: var(--white); border-inline-start-color: var(--gold-500); font-weight: 600; }
+.tabs--sub { margin-top: var(--space-3); }
+.tabs--sub [role="tab"] { background: var(--mint-100); border-color: transparent; }
+.tabs--sub [role="tab"][aria-selected="true"] { background: var(--teal-600); border-color: var(--teal-600); color: var(--white); }
+.subpanel__title { font-size: 1.1rem; margin-bottom: var(--space-2); color: var(--green-600); }
+.table--pairs { min-width: 0; }
+.table--pairs th { text-align: center; }
+.table--pairs td { width: 50%; }
+.table--pairs td.is-empty { background: var(--green-600) !important; }
+tr[hidden] { display: none; }
+.college-flow { margin-top: 1.5rem; }
+.college-flow .flow { margin: 0; padding: 0; list-style: none; display: grid; gap: .6rem; }
+.college-flow .flow li { padding: .6rem 1rem; border-inline-start: 4px solid var(--gold-500); background: var(--mint-50); border-radius: var(--r-sm, 8px); transition: transform .3s var(--ease-out), background .3s; }
+.college-flow .flow li:hover { transform: translateX(-6px); background: var(--mint-100); }
+.college-cta { text-align: center; }
+.college-cta .page-hero__actions { justify-content: center; }
+
+/* panel / tab switch + filter feedback */
+.diploma-panel:not([hidden]), .subpanel:not([hidden]) { animation: college-in .5s var(--ease-out); }
+.tabs [role="tab"] { transition: background .25s, color .25s, border-color .25s, transform .25s; }
+.tabs [role="tab"]:hover { transform: translateY(-2px); }
+.table tbody tr.is-match td { animation: college-pop .45s var(--ease-out); }
+@keyframes college-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes college-pop { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .diploma-panel, .subpanel, .table tbody tr.is-match td { animation: none !important; }
+  .level-card:hover .level-card__more, .college-flow .flow li:hover, .tabs [role="tab"]:hover { transform: none; }
+}
+@media (max-width: 639px) {
+  .table--pairs td { padding: .6rem .75rem; font-size: .95rem; }
+}

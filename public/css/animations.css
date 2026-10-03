@@ -24,6 +24,12 @@
 .js [data-anim="rise"] { transform: translateY(70px) scale(.97); }
 .js [data-anim].is-visible, .js .reveal.is-visible { opacity: 1; transform: none; }
 
+/* sideways reveals would widen the page before they fire: keep them vertical on small screens */
+@media (max-width: 767px) {
+  .js [data-anim="fade-right"], .js [data-anim="fade-left"] { transform: translateY(36px); }
+}
+html { overflow-x: clip; }
+
 /* ---- hero split words ---- */
 .split-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
 .split-word > span { display: inline-block; transform: translateY(110%); transition: transform .9s var(--ease-out); transition-delay: var(--d, 0ms); }
