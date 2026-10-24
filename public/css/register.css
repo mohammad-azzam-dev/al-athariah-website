@@ -1,0 +1,63 @@
+/* التسجيل والتواصل — page styles */
+.btn--lg { min-height: 56px; padding: .8rem 2rem; font-size: 1.1rem; }
+.reg-narrow { max-width: 820px; }
+
+.reg-steps { grid-template-columns: 1fr; }
+.reg-steps > li { padding-inline-start: 5rem; padding-block: var(--space-4); }
+.reg-steps > li::before { inset-inline-start: var(--space-3); top: var(--space-4); }
+.reg-steps > li h3 { margin-bottom: .3rem; }
+@media (min-width: 768px) { .reg-steps { grid-template-columns: repeat(2, 1fr); } }
+
+.reg-facts { margin-top: var(--space-5); }
+.reg-facts .stat { background: var(--white); }
+.reg-facts .stat__num { color: var(--gold-600); }
+.reg-facts .stat__label { color: var(--ink); opacity: 1; display: block; }
+
+.table tbody th { background: var(--mint-50); color: var(--green-800); text-align: start; padding: .7rem 1rem; border-top: 1px solid var(--line); vertical-align: top; font-family: var(--font-head); white-space: nowrap; }
+.table { min-width: 720px; }
+.table td { min-width: 150px; }
+
+.accordion .accordion__body ul { margin-bottom: 0; }
+
+.reg-form-card { color: var(--ink); padding: var(--space-4); }
+@media (min-width: 640px) { .reg-form-card { padding: var(--space-5); } }
+.section--dark .reg-form-card h3 { color: var(--green-800); }
+.section--dark .reg-form-card a:not(.btn) { color: var(--teal-600); }
+.field__err { color: #a12d1c; font-size: .92rem; margin: .3rem 0 0; min-height: 0; }
+.field__err:empty { display: none; }
+.field.has-error input, .field.has-error select, .field.has-error textarea { border-color: #a12d1c; }
+.reg-done { text-align: center; }
+.reg-done:focus { outline: none; }
+.reg-done__copy {
+  margin: var(--space-3) 0; padding: var(--space-3); background: var(--mint-50); border-inline-start: 4px solid var(--gold-500);
+  border-radius: var(--r-sm); text-align: start; white-space: pre-line; overflow-wrap: anywhere;
+}
+.reg-done__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+.reg-done .btn--ghost { color: var(--green-800); }
+
+.reg-cta__card { text-align: center; background: var(--green-800); color: #eaf3ee; padding: var(--space-6) var(--space-4); border-radius: var(--r-lg); max-width: 820px; margin-inline: auto; }
+.reg-cta__card h2 { color: var(--white); }
+.reg-cta__card p { color: #cfe2d6; }
+
+/* ---------- motion ---------- */
+.reg-steps > li { transition: box-shadow .25s, border-color .25s; }
+.reg-steps > li:hover { border-color: var(--gold-500); box-shadow: var(--shadow-md); }
+.reg-steps > li:hover::before { animation: regPulse .6s ease; }
+@keyframes regPulse { 50% { transform: scale(1.18) rotate(-6deg); } }
+
+.reg-table .table tbody tr { transition: background .2s; }
+.reg-table .table tbody tr:hover td { background: var(--mint-50); }
+
+.accordion details { transition: border-color .25s, box-shadow .25s; }
+.accordion details:hover { border-color: var(--teal-500); }
+.accordion details[open] { border-color: var(--gold-500); box-shadow: var(--shadow-md); }
+.accordion details[open] .accordion__body { animation: regOpen .4s var(--ease-out); }
+@keyframes regOpen { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+.reg-done:not([hidden]) { animation: regOpen .5s var(--ease-out); }
+.reg-cta__btn { animation: regGlow 2.6s ease-in-out infinite; }
+@keyframes regGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 75, .5); } 50% { box-shadow: 0 0 0 12px rgba(201, 162, 75, 0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion details[open] .accordion__body, .reg-done:not([hidden]), .reg-cta__btn, .reg-steps > li:hover::before { animation: none; }
+}

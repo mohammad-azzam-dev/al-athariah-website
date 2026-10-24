@@ -1,0 +1,135 @@
+/* المكتبة الأثرية — أنماط خاصة بالصفحة */
+.lib-hero { padding-block-end: var(--space-7); }
+.lib-search { position: relative; max-width: 680px; margin-top: var(--space-4); }
+.lib-search input {
+  min-height: 60px; padding-inline: 3.4rem 3rem; border-radius: 999px; font-size: 1.15rem; border: 2px solid transparent;
+  box-shadow: var(--shadow-md);
+}
+.lib-search input::-webkit-search-cancel-button { display: none; }
+.lib-search__icon { position: absolute; inset-inline-start: 1.2rem; top: 50%; width: 24px; height: 24px; transform: translateY(-50%); color: var(--green-600); pointer-events: none; }
+.lib-search__clear {
+  position: absolute; inset-inline-end: .6rem; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--mint-100); color: var(--green-800); font-size: 1.6rem; line-height: 1; cursor: pointer;
+}
+
+.lib-filters { display: grid; gap: var(--space-3); margin-bottom: var(--space-4); }
+.lib-filters__row { display: flex; flex-direction: column; gap: var(--space-2); }
+.lib-filters__label { font: 600 .95rem var(--font-head); color: var(--green-600); }
+.lib-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+@media (min-width: 768px) {
+  .lib-filters__row { flex-direction: row; align-items: flex-start; gap: var(--space-3); }
+  .lib-filters__label { flex: none; width: 5rem; padding-top: .5rem; }
+}
+
+.lib-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--line); }
+.lib-count { margin: 0; font-weight: 600; color: var(--green-800); }
+.lib-sort { display: flex; align-items: center; gap: .6rem; }
+.lib-sort label { margin: 0; white-space: nowrap; }
+.lib-sort select { width: auto; min-width: 11rem; }
+
+/* ---------- Book covers ---------- */
+.lib-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 768px) { .lib-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .lib-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .lib-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (max-width: 360px) { .lib-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.book {
+  --h: 160;
+  position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: .6rem; width: 100%; min-height: 230px; padding: 1rem .9rem 1rem 1.7rem;
+  text-align: center; cursor: pointer; border: 0; color: #fff; font: inherit;
+  border-radius: 6px 14px 14px 6px;
+  background:
+    var(--pattern) center / 70px,
+    linear-gradient(160deg, hsl(var(--h) 38% 30%), hsl(var(--h) 42% 20%));
+  background-blend-mode: soft-light, normal;
+  box-shadow: var(--shadow-sm), inset 0 0 0 1px rgba(255,255,255,.1);
+  transition: transform .25s, box-shadow .25s;
+  overflow: hidden;
+}
+/* spine on the start (right) edge in RTL */
+.book::before {
+  content: ''; position: absolute; inset-block: 0; inset-inline-start: 0; width: 14px;
+  background: linear-gradient(to left, hsl(var(--h) 45% 14%), hsl(var(--h) 40% 24%));
+  box-shadow: 1px 0 0 rgba(201,162,75,.6);
+}
+.book::after {
+  content: ''; position: absolute; inset: 8px 22px 8px 8px; border: 1px solid rgba(232,210,154,.45); border-radius: 4px; pointer-events: none;
+}
+.book[hidden] { display: none; }
+.lib-grid { perspective: 1400px; }
+.book { transform-origin: right center; transform-style: preserve-3d; will-change: transform; }
+/* 3D spine tilt: the cover swings open around its spine (the right edge in RTL) */
+.book:hover, .book:focus-visible { transform: translateY(-6px) rotateY(16deg) rotateZ(-.6deg); box-shadow: -14px 16px 28px rgba(20,38,29,.28), inset 0 0 0 1px rgba(255,255,255,.14); }
+/* gloss sweep */
+.book:hover::after, .book:focus-visible::after { border-color: rgba(232,210,154,.85); }
+.book__title { transition: transform .35s var(--ease-out, ease); }
+.book:hover .book__title { transform: translateZ(18px) scale(1.04); }
+.book:hover .book__prog { background: var(--white); }
+
+/* entrance + filter transitions — only when JS has taken over the grid, so no-JS users always see every card */
+.lib-grid.lib-ready .book:not(.is-in) { opacity: 0; }
+.book.is-in { animation: book-in .7s var(--ease-out, cubic-bezier(.22,1,.36,1)) var(--d, 0ms) both; }
+@keyframes book-in { from { opacity: 0; transform: translateY(34px) rotateY(-28deg) scale(.94); } to { opacity: 1; transform: none; } }
+.lib-grid.lib-ready .book.is-out { opacity: 0; transform: scale(.88); transition: opacity .16s ease, transform .16s ease; pointer-events: none; }
+.lib-count { transition: color .2s; }
+.book:focus-visible { outline-offset: 4px; }
+.book__field { font: 500 .78rem var(--font-body); color: var(--gold-300); position: relative; z-index: 1; }
+.book__title {
+  font-family: var(--font-quote); font-weight: 700; font-size: 1.28rem; line-height: 1.7; color: #fff; position: relative; z-index: 1;
+  display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere;
+}
+.book__author { font-size: .85rem; color: #e6efe9; position: relative; z-index: 1; line-height: 1.5; overflow-wrap: anywhere; }
+.book__author--unknown { opacity: .7; font-style: italic; }
+.book__prog { display: inline-block; align-self: center; font-size: .72rem; font-weight: 600; background: var(--gold-300); color: var(--green-900); padding: 0 .65rem; border-radius: 999px; position: relative; z-index: 1; }
+
+.lib-empty { text-align: center; padding: var(--space-6) var(--space-3); color: var(--ink-2); }
+.lib-empty svg { width: 64px; height: 64px; margin: 0 auto var(--space-3); color: var(--green-500); }
+.lib-empty[hidden] { display: none; }
+
+.lib-note { margin-top: var(--space-5); }
+
+/* ---------- Dialog ---------- */
+.lib-dialog {
+  width: min(94vw, 560px); max-height: 90vh; padding: 0; border: 0; border-radius: var(--r-lg); background: var(--cream); color: var(--ink);
+  box-shadow: var(--shadow-lg); overflow: auto;
+}
+.lib-dialog::backdrop { background: rgba(20, 38, 29, .6); }
+.lib-dialog__inner { padding: var(--space-4); position: relative; }
+.lib-dialog__close {
+  position: absolute; inset-block-start: .75rem; inset-inline-end: .75rem; width: 44px; height: 44px; border-radius: 50%; border: 0; z-index: 2;
+  background: rgba(255,255,255,.18); color: #fff; font-size: 1.7rem; line-height: 1; cursor: pointer;
+}
+.lib-dialog__head {
+  --h: 160; margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-4); padding: var(--space-5) var(--space-4) var(--space-4);
+  padding-inline-end: 4rem; color: #fff; text-align: start;
+  background: var(--pattern) center / 70px, linear-gradient(160deg, hsl(var(--h) 38% 30%), hsl(var(--h) 42% 20%)); background-blend-mode: soft-light, normal;
+}
+.lib-dialog__head h2 { font-family: var(--font-quote); color: #fff; font-size: clamp(1.4rem, 5vw, 1.9rem); margin-bottom: .3rem; overflow-wrap: anywhere; }
+.lib-dialog__field { font-size: .85rem; color: var(--gold-300); }
+.lib-dialog__author { margin: 0; color: #e6efe9; }
+.lib-dialog__meta { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1rem; margin: 0 0 var(--space-3); }
+.lib-dialog__meta dt { font-weight: 600; color: var(--green-600); }
+.lib-dialog__meta dd { margin: 0; }
+.lib-dialog h3 { font-size: 1.1rem; margin: var(--space-3) 0 var(--space-2); }
+.lib-dialog__topics { max-height: 220px; overflow: auto; background: var(--white); border: 1px solid var(--line); border-radius: var(--r-sm); padding: .6rem 2rem .6rem 1rem; font-family: var(--font-quote); font-size: 1.1rem; line-height: 1.9; }
+.lib-dialog__also { padding-inline-start: 1.25rem; }
+.lib-dialog__nodl { font-size: .92rem; color: var(--ink-2); border-inline-start: 4px solid var(--gold-500); padding-inline-start: .75rem; margin: var(--space-3) 0; }
+.lib-grid[hidden] { display: none; }
+
+.lib-dialog[open] { animation: dlg-in .35s var(--ease-out, ease) both; }
+.lib-dialog[open]::backdrop { animation: dlg-fade .3s ease both; }
+@keyframes dlg-in { from { opacity: 0; transform: translateY(24px) scale(.96); } }
+@keyframes dlg-fade { from { opacity: 0; } }
+.lib-empty:not([hidden]) { animation: dlg-in .45s var(--ease-out, ease) both; }
+.lib-chips .chip { transition: background .2s, color .2s, border-color .2s, transform .2s; }
+.lib-chips .chip:active { transform: scale(.94); }
+.lib-chips .chip[aria-pressed="true"] { transform: translateY(-1px); }
+
+@media (hover: none) { .book:hover { transform: none; box-shadow: var(--shadow-sm); } }
+@media (prefers-reduced-motion: reduce) {
+  .book, .book__title { transition: none !important; }
+  .book:hover, .book:focus-visible, .book:hover .book__title { transform: none !important; }
+  .book.is-in, .lib-dialog[open], .lib-dialog[open]::backdrop, .lib-empty:not([hidden]) { animation: none !important; }
+  .lib-grid.lib-ready .book:not(.is-in) { opacity: 1; }
+}
