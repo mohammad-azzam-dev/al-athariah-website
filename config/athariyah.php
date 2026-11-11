@@ -13,7 +13,6 @@ return [
         'college' => ['college', 'الكلية'],
         'school' => ['school', 'المدرسة'],
         'maqra' => ['maqra', 'المقرأة'],
-        'matun' => ['matun', 'المتون'],
         'library' => ['library', 'المكتبة'],
         'path' => ['path', 'مسار الطالب'],
     ],

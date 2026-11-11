@@ -13,7 +13,7 @@
     $star = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="14" height="14"/><rect x="5" y="5" width="14" height="14" transform="rotate(45 12 12)"/></svg>';
     $js = [
         'groups' => $data['groups'],
-        'programmes' => collect($data['programmes'])->map(fn ($p) => $p + ['page' => route($p['route'])])->all(),
+        'programmes' => collect($data['programmes'])->map(fn ($p) => $p + ['page' => route($p['route']).(isset($p['hash']) ? '#'.$p['hash'] : '')])->all(),
         'records' => $data['records'],
     ];
 @endphp

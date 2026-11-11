@@ -14,20 +14,28 @@
 .hero__facts { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); padding: 0; margin: var(--space-5) 0 0; color: #b9cfc1; }
 .hero__facts strong { font: 700 1.8rem var(--font-head); color: var(--gold-500); margin-inline-end: .25rem; }
 
-.hero__art { position: relative; justify-self: center; width: min(78vw, 360px); aspect-ratio: 4 / 5; }
+.hero__art { position: relative; justify-self: center; width: min(78vw, 360px); aspect-ratio: 4 / 5; container-type: inline-size; }
 .hero__arch {
   position: absolute; inset: 0; border-radius: 999px 999px 28px 28px; border: 2px solid var(--gold-500); padding: 12px;
   background: linear-gradient(160deg, var(--green-700), var(--green-900)); box-shadow: var(--shadow-lg);
 }
 .hero__arch::before { content: ''; position: absolute; inset: 12px; border-radius: inherit; border: 1px solid rgba(201,162,75,.5); background: var(--pattern); opacity: .6; }
 .hero__star { position: relative; width: 100%; height: 100%; padding: 14% 8%; animation: float 8s ease-in-out infinite; }
+/* Orbs orbit «أثر»: each starts at its own angle (--a) and the whole set turns via --spin.
+   Only the position moves, so the words stay upright. */
+@property --spin { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+.hero__art { --rx: 52cqw; --ry: 58cqw; --orb: 84px; animation: orbit 60s linear infinite; }
+.hero__art:hover { animation-play-state: paused; }
+@keyframes orbit { to { --spin: 360deg; } }
 .hero__orb {
-  position: absolute; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%;
+  --t: calc(var(--a, 0deg) + var(--spin));
+  position: absolute; top: 50%; left: 50%; z-index: 2;
+  display: grid; place-items: center; width: var(--orb); height: var(--orb); border-radius: 50%;
   background: var(--cream); color: var(--green-800); font: 600 1.05rem var(--font-head); box-shadow: var(--shadow-md); border: 3px solid var(--gold-500);
+  transform: translate(-50%, -50%) translate(calc(cos(var(--t)) * var(--rx)), calc(sin(var(--t)) * var(--ry)));
 }
-.hero__orb--1 { top: 8%; inset-inline-start: -8%; }
-.hero__orb--2 { top: 44%; inset-inline-end: -10%; }
-.hero__orb--3 { bottom: 6%; inset-inline-start: -4%; }
+@media (max-width: 520px) { .hero__art { --rx: 45cqw; --orb: 68px; } .hero__orb { font-size: .92rem; } }
+@media (prefers-reduced-motion: reduce) { .hero__art { animation: none !important; } }
 @keyframes float { 50% { transform: translateY(-8px); } }
 
 .houses { margin-bottom: var(--space-4); }
@@ -37,6 +45,7 @@
 .house__arch--school { background: var(--teal-600); }
 .house__arch--college { background: var(--green-800); }
 .house__arch--library { background: var(--gold-600); }
+.house__arch--maqra { background: var(--green-600); }
 .house__more { display: inline-block; margin-top: var(--space-2); color: var(--teal-600); font-weight: 600; }
 .house:hover .house__more { color: var(--green-800); }
 .halls .hall { border-inline-start: 6px solid var(--gold-500); }
@@ -71,4 +80,3 @@
 .marquee__item::after { content: '✦'; position: absolute; inset-inline-end: -.5rem; color: var(--teal-500); font-size: .8rem; top: .45rem; }
 .house__arch { transition: transform .5s var(--ease-out), border-radius .5s var(--ease-out); }
 .house:hover .house__arch { transform: translateY(-6px) scale(1.06); border-radius: 999px 999px 40px 40px; }
-.hero__orb { animation-delay: var(--od, 0s); }

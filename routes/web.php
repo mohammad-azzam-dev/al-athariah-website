@@ -8,8 +8,10 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/college', 'college')->name('college');
     Route::get('/school', 'school')->name('school');
     Route::get('/maqra', 'maqra')->name('maqra');
-    Route::get('/matun', 'matun')->name('matun');
     Route::get('/library', 'library')->name('library');
     Route::get('/path', 'path')->name('path');
     Route::get('/register', 'register')->name('register');
 });
+
+// قسم المتون العلمية is now the third section of المقرأة; keep the old URL working.
+Route::redirect('/matun', '/maqra#matun', 301)->name('matun');

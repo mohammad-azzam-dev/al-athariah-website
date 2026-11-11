@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'المقرأة الأثرية')
-@section('description', 'برامج القرآن الكريم والسنة النبوية للذكور والإناث: خيركم لتصحيح التلاوة، تاج الوقار وحلية القوارير لحفظ القرآن، وبرنامج الإمام الألباني لحفظ الأحاديث.')
+@section('description', 'المقرأة الأثرية للذكور والإناث: قسم القرآن الكريم (خيركم، تاج الوقار وحِلية القوارير)، وقسم السنة النبوية (برنامج الإمام الألباني)، وقسم المتون العلمية (جادة ونخبة وصفوة المتعلّمين).')
 
-@push('styles')<link rel="stylesheet" href="{{ asset('css/maqra.css') }}">@endpush
+@push('styles')<link rel="stylesheet" href="{{ asset('css/maqra.css') }}"><link rel="stylesheet" href="{{ asset('css/matun.css') }}">@endpush
 
 @php
     $q = $data['quran'];
@@ -89,6 +89,11 @@
                     </table></div>
                 </article>
             </div>
+
+            {{-- ================= المتون العلمية ================= --}}
+            <div role="tabpanel" id="panel-matun" aria-labelledby="tab-matun" class="tabpanel" hidden>
+                @include('partials.matun-ladder', ['matun' => $matun])
+            </div>
         </div>
     </section>
 
@@ -134,7 +139,7 @@
         <div class="container">
             <div class="note" data-anim="fade-up">
                 <p>{{ $data['note']['text'] }} <a href="{{ $data['note']['url'] }}" target="_blank" rel="noopener">{{ $data['note']['url_label'] }}</a></p>
-                <p><a class="btn btn--primary btn--sm" href="{{ route('register') }}">سجّل الآن</a> <a class="btn btn--ghost btn--sm" href="{{ route('matun') }}">قسم المتون العلمية</a></p>
+                <p><a class="btn btn--primary btn--sm" href="{{ route('register') }}">سجّل الآن</a> <a class="btn btn--ghost btn--sm" href="#matun">قسم المتون العلمية</a></p>
             </div>
         </div>
     </section>
@@ -143,4 +148,5 @@
 @push('scripts')
 <script>window.MAQRA_PROGRAMS = @json($c['programs']);</script>
 <script src="{{ asset('js/maqra.js') }}"></script>
+<script src="{{ asset('js/matun.js') }}"></script>
 @endpush

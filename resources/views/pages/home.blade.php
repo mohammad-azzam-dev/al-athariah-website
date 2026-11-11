@@ -42,9 +42,10 @@
                         <text x="100" y="124" text-anchor="middle" font-family="Reem Kufi, sans-serif" font-size="74" font-weight="700" fill="#FAF6EC">أثر</text>
                     </svg>
                 </div>
-                <span class="hero__orb hero__orb--1 float">مدرسة</span>
-                <span class="hero__orb hero__orb--2 float float--slow">كلية</span>
-                <span class="hero__orb hero__orb--3 float">مكتبة</span>
+                <span class="hero__orb hero__orb--1" style="--a: -60deg">مدرسة</span>
+                <span class="hero__orb hero__orb--2" style="--a: 30deg">كلية</span>
+                <span class="hero__orb hero__orb--3" style="--a: 210deg">مكتبة</span>
+                <span class="hero__orb hero__orb--4" style="--a: 120deg">مقرأة</span>
             </div>
         </div>
     </section>
@@ -56,17 +57,17 @@
         </div></div>
     </div>
 
-    <!-- ===== Three houses ===== -->
+    <!-- ===== Four houses: school, college, maqra, library ===== -->
     <section class="section" id="houses">
         <div class="container">
             <div class="section__head" data-anim="fade-up">
-                <span class="eyebrow">ثلاثة بيوت للعلم</span>
+                <span class="eyebrow">أربعة بيوت للعلم</span>
                 <h2>اختر بيتك الأول</h2>
                 <div class="ornament" aria-hidden="true">{!! $star !!}</div>
                 <p>كل قسم له صفحته وبرنامجه، وكلها تتكامل في مسار واحد من المرحلة الأولى حتى التخصص.</p>
             </div>
 
-            <div class="grid grid--3 houses" data-stagger="140">
+            <div class="grid grid--4 houses" data-stagger="140">
                 <a class="card house card--glow" data-tilt href="{{ route('school') }}">
                     <div class="house__arch house__arch--school" aria-hidden="true">
                         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 10 6 24l26 14 26-14-26-14Z"/><path d="M16 31v14c0 4 7 8 16 8s16-4 16-8V31"/><path d="M58 24v18"/></svg>
@@ -85,6 +86,15 @@
                     <p>دبلوم العلوم الشرعية، ثم الدبلوم التخصصي أو التأهيلي، ثم الدبلوم المسلكي — بدراسة تفاعلية وذاتية.</p>
                     <span class="house__more">استعرض الدبلومات ←</span>
                 </a>
+                <a class="card house card--glow" data-tilt href="{{ route('maqra') }}">
+                    <div class="house__arch house__arch--maqra" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 16c-6-4-14-5-22-3v36c8-2 16-1 22 3 6-4 14-5 22-3V13c-8-2-16-1-22 3Z"/><path d="M32 16v36"/></svg>
+                    </div>
+                    <span class="badge badge--mint">الحفظ</span>
+                    <h3>المقرأة الأثرية</h3>
+                    <p>قسم القرآن الكريم، وقسم السنة النبوية، وقسم المتون العلمية: تصحيح التلاوة، وحفظ القرآن والأحاديث والمتون.</p>
+                    <span class="house__more">ادخل المقرأة ←</span>
+                </a>
                 <a class="card house card--glow" data-tilt href="{{ route('library') }}">
                     <div class="house__arch house__arch--library" aria-hidden="true">
                         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10h10v44H10zM24 10h10v44H24z"/><path d="m40 14 9-3 9 38-9 3-9-38Z"/></svg>
@@ -95,16 +105,6 @@
                     <span class="house__more">ابحث في المكتبة ←</span>
                 </a>
             </div>
-
-            <div class="grid grid--2 halls" data-stagger="140">
-                <a class="card hall card--glow" href="{{ route('maqra') }}">
-                    <h3>المقرأة الأثرية</h3>
-                    <p>تصحيح التلاوة، وحفظ القرآن كاملًا، وحفظ الأحاديث النبوية في برنامج الإمام الألباني.</p>
-                </a>
-                <a class="card hall card--glow" href="{{ route('matun') }}">
-                    <h3>قسم المتون العلمية</h3>
-                    <p>«صناعة المتعلّمين»: جادة المتعلمين، ثم نخبة المتعلمين، ثم صفوة المتعلمين.</p>
-                </a>
             </div>
         </div>
     </section>
@@ -176,7 +176,6 @@
                 <p>اطّلع على شروط كل مستوى، ثم سجّل عبر موقع المجمع.</p>
                 <div class="cta__actions">
                     <a class="btn btn--primary" href="{{ route('register') }}">كيف أسجّل؟</a>
-                    <a class="btn btn--ghost" href="{{ config('athariyah.website') }}" target="_blank" rel="noopener">موقع المجمع alathariah.org</a>
                 </div>
             </div>
         </div>

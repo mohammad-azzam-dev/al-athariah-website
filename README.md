@@ -9,5 +9,5 @@ php artisan migrate   # sqlite
 php artisan serve
 ```
 
-Pages: `/` `/college` `/school` `/maqra` `/matun` `/library` `/path` `/register`
+Pages: `/` `/college` `/school` `/maqra` (القرآن، السنة، المتون العلمية) `/library` `/path` `/register` — `/matun` redirects to `/maqra#matun`
 Content arrays: `app/Data/*Data.php` · Views: `resources/views/pages` · Animation engine: `public/js/app.js` + `public/css/animations.css`.

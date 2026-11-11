@@ -26,7 +26,7 @@ class LibraryData
             'programmes' => [
                 ['id' => 'school', 'label' => 'المدرسة', 'route' => 'school', 'pageLabel' => 'المدرسة الأثرية'],
                 ['id' => 'college', 'label' => 'الكلية', 'route' => 'college', 'pageLabel' => 'الكلية الأثرية'],
-                ['id' => 'matun', 'label' => 'المتون', 'route' => 'matun', 'pageLabel' => 'قسم المتون العلمية'],
+                ['id' => 'matun', 'label' => 'المتون', 'route' => 'maqra', 'hash' => 'matun', 'pageLabel' => 'المقرأة الأثرية — قسم المتون العلمية'],
                 ['id' => 'maqra', 'label' => 'المقرأة', 'route' => 'maqra', 'pageLabel' => 'المقرأة الأثرية'],
             ],
             'records' => [
