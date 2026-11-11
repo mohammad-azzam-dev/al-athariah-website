@@ -7,7 +7,7 @@
 .school-glance__grid .stat__num { font-size: clamp(1.8rem, 6vw, 2.8rem); }
 .school-glance__wide { grid-column: 1 / -1; }
 @media (min-width: 768px) {
-  .school-glance__grid { grid-template-columns: repeat(5, 1fr); }
+  .school-glance__grid { grid-template-columns: repeat(3, 1fr); }
   .school-glance__wide { grid-column: auto; }
 }
 
@@ -19,7 +19,7 @@
 /* Tools */
 .school-tools { display: grid; gap: var(--space-3); margin-bottom: var(--space-4); }
 .school-tools__chips, .school-tools__view { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.school-tools__count { margin: 0; color: var(--ink-2); font-size: .95rem; }
+.school-tools__count { margin: 0; color: var(--text-2); font-size: .95rem; }
 @media (min-width: 768px) { .school-tools__search { max-width: 460px; } }
 
 /* Cards */
@@ -29,27 +29,27 @@
 .school-card { display: flex; flex-direction: column; gap: var(--space-2); position: relative; padding-top: var(--space-4); }
 .school-cards[hidden], .school-card[hidden], .school-table tbody[hidden] { display: none; }
 .school-card__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
-.school-card__num { font-family: var(--font-head); font-size: 1.1rem; color: var(--green-600); background: var(--mint-100); width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; }
+.school-card__num { font-family: var(--font-head); font-size: 1.1rem; color: var(--heading-soft); background: var(--surface-tint); width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; }
 .school-card h3 { margin: 0; }
-.school-card__book { font-family: var(--font-quote); font-size: 1.2rem; color: var(--ink); margin: 0; }
-.school-card__meta { margin: 0; padding: 0; list-style: none; color: var(--ink-2); font-size: .95rem; }
-.school-card__meta strong { color: var(--green-800); font-weight: 600; }
+.school-card__book { font-family: var(--font-quote); font-size: 1.2rem; color: var(--text); margin: 0; }
+.school-card__meta { margin: 0; padding: 0; list-style: none; color: var(--text-2); font-size: .95rem; }
+.school-card__meta strong { color: var(--heading); font-weight: 600; }
 .school-card__item + .school-card__item { border-top: 1px dashed var(--line); padding-top: var(--space-2); margin-top: var(--space-1); }
 .school-card__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem; }
 
 /* Table */
 .school-table__table { min-width: 720px; }
 .school-table__table tbody + tbody td { border-top: 2px solid var(--line); }
-.school-table__table td[rowspan] { background: var(--white); }
+.school-table__table td[rowspan] { background: var(--surface); }
 .school-table__table .book { font-family: var(--font-quote); }
 
-.school-empty { text-align: center; padding: var(--space-5); color: var(--ink-2); }
+.school-empty { text-align: center; padding: var(--space-5); color: var(--text-2); }
 .school-footnote { margin-top: var(--space-5); padding: var(--space-3) var(--space-4); background: var(--green-600); color: var(--white); border-radius: var(--r-sm); font-weight: 600; text-align: center; }
 
 /* Levels */
 .school-levels { margin-top: var(--space-5); }
 .school-levels__list { list-style: none; padding: 0; display: grid; gap: var(--space-3); }
-.school-levels__list li { background: var(--white); border: 1px solid var(--line); border-radius: var(--r-sm); padding: var(--space-3) var(--space-4); }
+.school-levels__list li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: var(--space-3) var(--space-4); }
 .school-levels__list li.is-here { border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(201, 162, 75, .25); }
 .school-levels__list .badge { margin-inline-end: .5rem; }
 
@@ -63,7 +63,7 @@
 .school-card.is-pop { animation: school-pop .45s var(--ease-out) both; }
 @keyframes school-pop { from { opacity: 0; transform: scale(.92) translateY(10px); } to { opacity: 1; transform: none; } }
 .school-table__table tbody { transition: background .2s; }
-.school-table__table tbody:hover { background: var(--mint-100); }
+.school-table__table tbody:hover { background: var(--surface-tint); }
 .school-table.is-pop { animation: school-pop .45s var(--ease-out) both; }
 .school-levels__list li { transition: transform .25s var(--ease-out), box-shadow .25s; }
 .school-levels__list li:hover { transform: translateX(-6px); }

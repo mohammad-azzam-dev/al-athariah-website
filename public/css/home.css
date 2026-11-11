@@ -31,7 +31,7 @@
   --t: calc(var(--a, 0deg) + var(--spin));
   position: absolute; top: 50%; left: 50%; z-index: 2;
   display: grid; place-items: center; width: var(--orb); height: var(--orb); border-radius: 50%;
-  background: var(--cream); color: var(--green-800); font: 600 1.05rem var(--font-head); box-shadow: var(--shadow-md); border: 3px solid var(--gold-500);
+  background: var(--bg); color: var(--heading); font: 600 1.05rem var(--font-head); box-shadow: var(--shadow-md); border: 3px solid var(--gold-500);
   transform: translate(-50%, -50%) translate(calc(cos(var(--t)) * var(--rx)), calc(sin(var(--t)) * var(--ry)));
 }
 @media (max-width: 520px) { .hero__art { --rx: 45cqw; --orb: 68px; } .hero__orb { font-size: .92rem; } }
@@ -46,8 +46,8 @@
 .house__arch--college { background: var(--green-800); }
 .house__arch--library { background: var(--gold-600); }
 .house__arch--maqra { background: var(--green-600); }
-.house__more { display: inline-block; margin-top: var(--space-2); color: var(--teal-600); font-weight: 600; }
-.house:hover .house__more { color: var(--green-800); }
+.house__more { display: inline-block; margin-top: var(--space-2); color: var(--accent); font-weight: 600; }
+.house:hover .house__more { color: var(--heading); }
 .halls .hall { border-inline-start: 6px solid var(--gold-500); }
 
 .levels { list-style: none; padding: 0; margin: 0 0 var(--space-5); display: grid; gap: var(--space-4); position: relative; }
@@ -67,10 +67,10 @@
 .finder__chips .chip { text-decoration: none; }
 @media (max-width: 480px) { .finder__form { flex-direction: column; } }
 
-.stats .stat { background: var(--white); }
+.stats .stat { background: var(--surface); }
 .cta { text-align: center; margin-top: var(--space-6); }
 .cta__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
-.cta .btn--ghost { color: var(--green-800); }
+.cta .btn--ghost { color: var(--heading); }
 
 /* ---- animation additions ---- */
 .hero__bg-star { position: absolute; inset-inline-start: -120px; top: -80px; width: 520px; opacity: .18; pointer-events: none; z-index: -1; }
@@ -81,3 +81,6 @@
 .house__arch { transition: transform .5s var(--ease-out), border-radius .5s var(--ease-out); }
 .house:hover .house__arch { transform: translateY(-6px) scale(1.06); border-radius: 999px 999px 40px 40px; }
 .hero__mark { filter: drop-shadow(0 0 6px rgba(232,210,154,.35)); }
+@media (min-width: 640px) and (max-width: 899.98px) {
+  .levels { grid-template-columns: repeat(2, 1fr); }
+}

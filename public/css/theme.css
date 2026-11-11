@@ -1,0 +1,117 @@
+/* ==========================================================
+   أثر — Dark theme ("ليلي")
+   A deep green-black page, raised green surfaces, warm cream headings and gold
+   accents. The green hero, bands and footer keep their colour and read as layers.
+   The active theme is set on <html data-theme> before paint (see layout head);
+   without JS the system preference applies through the media query.
+   ========================================================== */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1510;
+  --bg-2: #0f1b15;
+  --surface: #13221b;
+  --surface-soft: #101d17;
+  --surface-tint: #1a2f25;
+  --text: #e3ebe5;
+  --text-2: #a5b7ac;
+  --heading: #f1e6c8;
+  --heading-soft: #d9b866;
+  --accent: #63d2c7;
+  --line: rgba(232, 210, 154, .14);
+  --header-bg: rgba(11, 21, 16, .86);
+  --danger: #ff917f;
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, .35);
+  --shadow-md: 0 14px 34px rgba(0, 0, 0, .45);
+  --shadow-lg: 0 26px 64px rgba(0, 0, 0, .55);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #0b1510; --bg-2: #0f1b15; --surface: #13221b; --surface-soft: #101d17; --surface-tint: #1a2f25;
+    --text: #e3ebe5; --text-2: #a5b7ac; --heading: #f1e6c8; --heading-soft: #d9b866; --accent: #63d2c7;
+    --line: rgba(232, 210, 154, .14); --header-bg: rgba(11, 21, 16, .86); --danger: #ff917f;
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, .35); --shadow-md: 0 14px 34px rgba(0, 0, 0, .45); --shadow-lg: 0 26px 64px rgba(0, 0, 0, .55);
+  }
+}
+
+/* ---- page: a faint gold glow and star lattice so large dark areas are not flat ---- */
+[data-theme="dark"] body {
+  background:
+    radial-gradient(1100px 520px at 88% -8%, rgba(201, 162, 75, .09), transparent 62%),
+    radial-gradient(900px 600px at -10% 40%, rgba(43, 163, 155, .06), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+[data-theme="dark"] main > .section:not(.section--dark):not(.section--mint):not(.section--paper) { position: relative; }
+[data-theme="dark"] .section--mint,
+[data-theme="dark"] .section--paper { background-image: linear-gradient(rgba(201, 162, 75, .03), rgba(201, 162, 75, .03)); }
+
+/* ---- header ---- */
+[data-theme="dark"] .site-header { border-bottom-color: rgba(232, 210, 154, .12); }
+[data-theme="dark"] .site-header.is-scrolled { box-shadow: 0 10px 30px rgba(0, 0, 0, .45); }
+[data-theme="dark"] .nav__link:hover { background: var(--surface-tint); color: var(--heading); }
+
+/* Active / selected states turn gold: the green fill disappears on a dark page. */
+[data-theme="dark"] .nav__link[aria-current="page"],
+[data-theme="dark"] .chip[aria-pressed="true"],
+[data-theme="dark"] .chip.is-active,
+[data-theme="dark"] .tabs [role="tab"][aria-selected="true"] {
+  background: var(--gold-500); border-color: var(--gold-500); color: var(--green-900);
+}
+
+/* ---- surfaces ---- */
+[data-theme="dark"] .card { border-color: rgba(232, 210, 154, .1); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, .03); }
+[data-theme="dark"] a.card:hover,
+[data-theme="dark"] .card--hover:hover { border-color: rgba(232, 210, 154, .28); }
+[data-theme="dark"] .card--glow:hover { box-shadow: 0 18px 50px rgba(201, 162, 75, .18), 0 0 0 1px rgba(232, 210, 154, .25); }
+[data-theme="dark"] .btn--dark { background: var(--green-700); border-color: rgba(232, 210, 154, .22); }
+[data-theme="dark"] .btn--dark:hover { background: var(--green-600); }
+[data-theme="dark"] .btn--ghost:hover { background: rgba(232, 210, 154, .08); }
+[data-theme="dark"] .quote { border-color: rgba(232, 210, 154, .28); }
+[data-theme="dark"] .note { border-inline-start-color: var(--gold-500); }
+[data-theme="dark"] .table th { background: #24463a; }
+[data-theme="dark"] .ornament::before,
+[data-theme="dark"] .ornament::after { opacity: .8; }
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea { background: var(--surface-soft); color: var(--text); border-color: rgba(232, 210, 154, .18); }
+[data-theme="dark"] ::placeholder { color: #7f9487; }
+[data-theme="dark"] .accordion details { border-color: rgba(232, 210, 154, .12); }
+
+/* ---- bands that are green in both themes get a hairline so they separate from the page ---- */
+[data-theme="dark"] .site-footer { border-top: 1px solid rgba(232, 210, 154, .12); }
+[data-theme="dark"] .section--dark { box-shadow: inset 0 1px 0 rgba(232, 210, 154, .1), inset 0 -1px 0 rgba(232, 210, 154, .1); }
+
+/* ---- home: orbs keep their cream face, so the orbit still pops on the green hero ---- */
+[data-theme="dark"] .hero__orb { background: var(--cream); color: var(--green-800); }
+
+/* ---- logo: light version in the header when dark ---- */
+.brand__logo--light { display: none; }
+[data-theme="dark"] .site-header .brand__logo--dark { display: none; }
+[data-theme="dark"] .site-header .brand__logo--light { display: block; }
+
+/* ---- theme toggle ---- */
+.theme-btn {
+  position: relative; width: 46px; height: 46px; flex: none; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid var(--line); background: var(--surface); color: var(--heading);
+  display: grid; place-items: center; overflow: hidden; transition: background .3s, border-color .3s, transform .2s;
+}
+.theme-btn:hover { transform: rotate(-12deg); border-color: var(--gold-500); }
+.theme-btn svg { position: absolute; width: 22px; height: 22px; transition: transform .5s cubic-bezier(.22, 1, .36, 1), opacity .3s; }
+.theme-btn .i-sun { opacity: 0; transform: translateY(26px) rotate(-90deg); }
+.theme-btn .i-moon { opacity: 1; transform: none; }
+[data-theme="dark"] .theme-btn { color: var(--gold-300); }
+[data-theme="dark"] .theme-btn .i-sun { opacity: 1; transform: none; }
+[data-theme="dark"] .theme-btn .i-moon { opacity: 0; transform: translateY(-26px) rotate(90deg); }
+.site-header__tools { display: flex; align-items: center; gap: .5rem; }
+
+/* Smooth colour change while switching (added by app.js for a moment only). */
+.theme-switching, .theme-switching *, .theme-switching *::before, .theme-switching *::after {
+  transition: background-color .45s ease, color .45s ease, border-color .45s ease, box-shadow .45s ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-btn svg { transition: none; }
+}
+
+[data-theme="dark"] .house__arch--college { background: #2f6f57; box-shadow: inset 0 0 0 2px rgba(232, 210, 154, .35); }

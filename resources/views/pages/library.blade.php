@@ -9,6 +9,7 @@
     $groups = collect($data['groups'])->keyBy('id');
     $progs = collect($data['programmes'])->keyBy('id');
     $total = count($data['records']);
+    $withFiles = collect($data['records'])->filter(fn ($r) => ! empty($r['file']))->count();
     $arNum = fn ($n) => strtr((string) $n, ['0' => '٠', '1' => '١', '2' => '٢', '3' => '٣', '4' => '٤', '5' => '٥', '6' => '٦', '7' => '٧', '8' => '٨', '9' => '٩']);
     $star = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="14" height="14"/><rect x="5" y="5" width="14" height="14" transform="rotate(45 12 12)"/></svg>';
     $js = [
@@ -65,11 +66,13 @@
                 @foreach ($data['records'] as $r)
                     @php($g = $groups[$r['group']])
                     <button type="button" class="book" data-id="{{ $r['id'] }}" style="--h: {{ $g['hue'] }}; --i: {{ $loop->index % 10 }}" aria-haspopup="dialog"
-                            aria-label="{{ $r['title'] }} — {{ $r['author'] ?: 'المؤلف غير مذكور' }} — {{ $progs[$r['prog']]['label'] }}">
+                            aria-label="{{ $r['title'] }} — {{ $r['author'] ?: 'المؤلف غير مذكور' }} — {{ $progs[$r['prog']]['label'] }}{{ ! empty($r['file']) ? ' — نسخة رقمية متاحة' : '' }}"
+                            @if (! empty($r['file'])) title="نسخة رقمية متاحة" @endif>
                         <span class="book__field">{{ $r['field'] }}</span>
                         <span class="book__title">{{ $r['title'] }}</span>
                         <span class="book__author{{ $r['author'] ? '' : ' book__author--unknown' }}">{{ $r['author'] ?: 'المؤلف غير مذكور' }}</span>
                         <span class="book__prog">{{ $progs[$r['prog']]['label'] }}</span>
+                        @if (! empty($r['file']))<span class="book__file" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg></span>@endif
                     </button>
                 @endforeach
             </div>
@@ -105,7 +108,11 @@
                     <p>يتجاهل البحث التشكيل ويوحّد صور الهمزة والتاء المربوطة والياء، فتجد الكتاب سواء كتبته مشكولًا أو غير مشكول.</p>
                 </article>
             </div>
-            <p class="note lib-note" data-anim="fade-up"><strong>تنبيه:</strong> النسخ الرقمية للقراءة غير متاحة بعد، ولذلك لا توجد في هذه الصفحة روابط تحميل. المكتبة حاليًا فهرس تعريفي فقط.</p>
+            @if ($withFiles === 0)
+                <p class="note lib-note" data-anim="fade-up"><strong>تنبيه:</strong> النسخ الرقمية للقراءة غير متاحة بعد، ولذلك لا توجد في هذه الصفحة روابط تحميل. المكتبة حاليًا فهرس تعريفي فقط.</p>
+            @else
+                <p class="note lib-note" data-anim="fade-up"><strong>النسخ الرقمية:</strong> {{ $arNum($withFiles) }} من كتب الفهرس لها نسخة رقمية؛ افتح بطاقة الكتاب واضغط «قراءة / تحميل». البطاقات التي تحمل أيقونة التحميل الذهبية هي المتاحة.</p>
+            @endif
         </div>
     </section>
 
@@ -126,7 +133,11 @@
                 <h3>يُذكر أيضًا في</h3>
                 <ul class="lib-dialog__also" id="dlg-also"></ul>
             </div>
-            <p class="lib-dialog__nodl">النسخة الرقمية غير متاحة حاليًا.</p>
+            <p class="lib-dialog__nodl" id="dlg-nodl">النسخة الرقمية غير متاحة حاليًا.</p>
+            <a class="btn btn--dark lib-dialog__file" id="dlg-file" href="#" target="_blank" rel="noopener" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+                قراءة / تحميل <span class="lib-dialog__size" id="dlg-size" dir="ltr"></span>
+            </a>
             <a class="btn btn--primary" id="dlg-link" href="{{ route('school') }}">صفحة البرنامج</a>
         </div>
     </dialog>

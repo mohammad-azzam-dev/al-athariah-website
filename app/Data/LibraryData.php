@@ -2,6 +2,9 @@
 
 namespace App\Data;
 
+use App\Models\Book;
+use Illuminate\Support\Facades\Schema;
+
 /**
  * Static content for the Library page (source: الدليل الشامل — قسم التعليم عن بُعد ١٤٤٨هـ).
  * author = null means the author is not named in the guide.
@@ -9,7 +12,55 @@ namespace App\Data;
  */
 class LibraryData
 {
+    /**
+     * The library: categories and programmes from the guide, and the books from the
+     * database (managed in the admin dashboard). Falls back to the guide's list when
+     * the database is not available.
+     */
     public static function get(): array
+    {
+        $data = self::catalogue();
+        $records = self::databaseRecords();
+        if ($records !== null) {
+            $data['records'] = $records;
+        }
+
+        return $data;
+    }
+
+    /** Book records from the database, or null when the table is missing or empty. */
+    public static function databaseRecords(): ?array
+    {
+        try {
+            if (! Schema::hasTable('books')) {
+                return null;
+            }
+            $books = Book::query()->published()->ordered()->get();
+        } catch (\Throwable $e) {
+            return null;
+        }
+
+        return $books->isEmpty() ? null : $books->map->toLibraryRecord()->all();
+    }
+
+    /** The guide's records, used to seed the books table. */
+    public static function seedRecords(): array
+    {
+        return self::catalogue()['records'];
+    }
+
+    public static function groupIds(): array
+    {
+        return array_column(self::catalogue()['groups'], 'id');
+    }
+
+    public static function programmeIds(): array
+    {
+        return array_column(self::catalogue()['programmes'], 'id');
+    }
+
+    /** Categories, programmes and the guide's book list (الدليل الشامل ١٤٤٨هـ). */
+    public static function catalogue(): array
     {
         return [
             'groups' => [

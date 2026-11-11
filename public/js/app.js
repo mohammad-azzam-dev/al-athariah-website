@@ -6,15 +6,41 @@
   var AR = '٠١٢٣٤٥٦٧٨٩';
   var toAr = function (n) { return String(n).replace(/\d/g, function (d) { return AR[d]; }); };
 
-  /* ---------- Page intro (once per session) ---------- */
+  /* ---------- Theme (light / dark) ----------
+     The layout head already set <html data-theme> before paint; this wires the toggle,
+     remembers a manual choice, and follows the system setting until the visitor picks one. */
   (function () {
-    var intro = document.querySelector('.page-intro');
-    if (!intro || reduce) return;
-    var seen = false;
-    try { seen = sessionStorage.getItem('athariyah-intro') === '1'; sessionStorage.setItem('athariyah-intro', '1'); } catch (e) {}
-    if (seen || document.body.getAttribute('data-page') !== 'home') return;
-    document.documentElement.classList.add('show-intro');
-    setTimeout(function () { intro.classList.add('is-done'); }, 1300);
+    var root = document.documentElement;
+    var KEY = 'athariyah-theme';
+    var meta = document.querySelector('meta[name="theme-color"]');
+    var btns = $$('[data-theme-toggle]');
+    function saved() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function apply(theme, animate) {
+      if (animate && !reduce) {
+        root.classList.add('theme-switching');
+        setTimeout(function () { root.classList.remove('theme-switching'); }, 500);
+      }
+      root.setAttribute('data-theme', theme);
+      var dark = theme === 'dark';
+      if (meta) meta.setAttribute('content', dark ? '#0B1510' : '#1E3A2C');
+      btns.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(dark));
+        b.setAttribute('aria-label', dark ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي');
+        b.setAttribute('title', dark ? 'الوضع النهاري' : 'الوضع الليلي');
+      });
+    }
+    apply(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+        apply(next, true);
+      });
+    });
+    var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq && mq.addEventListener) {
+      mq.addEventListener('change', function (e) { if (!saved()) apply(e.matches ? 'dark' : 'light', true); });
+    }
   })();
 
   /* ---------- Drawer ---------- */
@@ -97,6 +123,32 @@
     });
     if (fromHash()) setTimeout(function () { list.scrollIntoView({ block: 'start' }); }, 60);
   });
+
+  /* ---------- Scrollable tables: fade the cut-off edge and show a swipe hint ---------- */
+  (function () {
+    var wraps = $$('.table-wrap');
+    if (!wraps.length) return;
+    function check(w) {
+      var more = w.scrollWidth > w.clientWidth + 4;
+      w.classList.toggle('is-scrollable', more);
+      // RTL: scrollLeft runs from 0 to a negative number
+      w.classList.toggle('is-end', !more || Math.abs(w.scrollLeft) + w.clientWidth >= w.scrollWidth - 4);
+      var hint = w.previousElementSibling && w.previousElementSibling.classList.contains('table-hint') ? w.previousElementSibling : null;
+      if (more && !hint) {
+        hint = document.createElement('p'); hint.className = 'table-hint';
+        hint.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5m0 0l5-5m-5 5l5 5"/></svg> اسحب الجدول لرؤية بقية الأعمدة';
+        w.parentNode.insertBefore(hint, w);
+      }
+      if (hint) hint.hidden = !more;
+    }
+    wraps.forEach(function (w) {
+      w.addEventListener('scroll', function () { check(w); }, { passive: true });
+      check(w);
+    });
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(function () { wraps.forEach(check); }, 150); });
+    // tables inside tabs become measurable when their panel opens
+    document.addEventListener('click', function (e) { if (e.target.closest('[role="tab"]')) setTimeout(function () { wraps.forEach(check); }, 60); });
+  })();
 
   /* ---------- Split heading words ---------- */
   $$('[data-split]').forEach(function (el) {
