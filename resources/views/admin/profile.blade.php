@@ -9,7 +9,7 @@
         <div class="alert alert-success"><i class="bi bi-check-circle-fill me-1"></i> تم تغيير كلمة المرور.</div>
     @endif
 
-    <div class="row">
+    <div class="row" style="max-width: 1200px">
         <div class="col-lg-6">
             <div class="card card-primary card-outline mb-4">
                 <div class="card-header"><h3 class="card-title">البيانات الشخصية</h3></div>

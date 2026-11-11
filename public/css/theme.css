@@ -113,3 +113,5 @@
 @media (prefers-reduced-motion: reduce) {
   .theme-btn svg { transition: none; }
 }
+
+[data-theme="dark"] .house__arch--college { background: #2f6f57; box-shadow: inset 0 0 0 2px rgba(232, 210, 154, .35); }

@@ -81,3 +81,6 @@
 .house__arch { transition: transform .5s var(--ease-out), border-radius .5s var(--ease-out); }
 .house:hover .house__arch { transform: translateY(-6px) scale(1.06); border-radius: 999px 999px 40px 40px; }
 .hero__mark { filter: drop-shadow(0 0 6px rgba(232,210,154,.35)); }
+@media (min-width: 640px) and (max-width: 899.98px) {
+  .levels { grid-template-columns: repeat(2, 1fr); }
+}

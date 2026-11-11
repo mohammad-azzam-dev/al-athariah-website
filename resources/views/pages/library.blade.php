@@ -66,12 +66,13 @@
                 @foreach ($data['records'] as $r)
                     @php($g = $groups[$r['group']])
                     <button type="button" class="book" data-id="{{ $r['id'] }}" style="--h: {{ $g['hue'] }}; --i: {{ $loop->index % 10 }}" aria-haspopup="dialog"
-                            aria-label="{{ $r['title'] }} — {{ $r['author'] ?: 'المؤلف غير مذكور' }} — {{ $progs[$r['prog']]['label'] }}">
+                            aria-label="{{ $r['title'] }} — {{ $r['author'] ?: 'المؤلف غير مذكور' }} — {{ $progs[$r['prog']]['label'] }}{{ ! empty($r['file']) ? ' — نسخة رقمية متاحة' : '' }}"
+                            @if (! empty($r['file'])) title="نسخة رقمية متاحة" @endif>
                         <span class="book__field">{{ $r['field'] }}</span>
                         <span class="book__title">{{ $r['title'] }}</span>
                         <span class="book__author{{ $r['author'] ? '' : ' book__author--unknown' }}">{{ $r['author'] ?: 'المؤلف غير مذكور' }}</span>
                         <span class="book__prog">{{ $progs[$r['prog']]['label'] }}</span>
-                        @if (! empty($r['file']))<span class="book__file" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg> نسخة رقمية</span>@endif
+                        @if (! empty($r['file']))<span class="book__file" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg></span>@endif
                     </button>
                 @endforeach
             </div>
@@ -110,7 +111,7 @@
             @if ($withFiles === 0)
                 <p class="note lib-note" data-anim="fade-up"><strong>تنبيه:</strong> النسخ الرقمية للقراءة غير متاحة بعد، ولذلك لا توجد في هذه الصفحة روابط تحميل. المكتبة حاليًا فهرس تعريفي فقط.</p>
             @else
-                <p class="note lib-note" data-anim="fade-up"><strong>النسخ الرقمية:</strong> {{ $arNum($withFiles) }} من كتب الفهرس لها نسخة رقمية؛ افتح بطاقة الكتاب واضغط «قراءة / تحميل». البطاقات التي تحمل علامة «نسخة رقمية» هي المتاحة.</p>
+                <p class="note lib-note" data-anim="fade-up"><strong>النسخ الرقمية:</strong> {{ $arNum($withFiles) }} من كتب الفهرس لها نسخة رقمية؛ افتح بطاقة الكتاب واضغط «قراءة / تحميل». البطاقات التي تحمل أيقونة التحميل الذهبية هي المتاحة.</p>
             @endif
         </div>
     </section>

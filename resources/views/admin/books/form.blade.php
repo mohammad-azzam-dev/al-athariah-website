@@ -56,14 +56,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md mb-3">
                             <label class="form-label" for="programme">البرنامج <span class="text-danger">*</span></label>
                             <select id="programme" name="programme" class="form-select{{ $err('programme') }}" required>
                                 @foreach ($programmes as $id => $label)<option value="{{ $id }}" @selected(old('programme', $book->programme) === $id)>{{ $label }}</option>@endforeach
                             </select>
                             @error('programme')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
-                        <div class="col-md-6 mb-3" id="section-wrap">
+                        <div class="col-md mb-3" id="section-wrap">
                             <label class="form-label" for="section">القسم داخل المقرأة</label>
                             <select id="section" name="section" class="form-select{{ $err('section') }}">
                                 <option value="">قسم القرآن / السنة</option>
@@ -116,9 +116,13 @@
                             <label class="form-check-label text-danger" for="remove_file">حذف الملف الحالي</label>
                         </div>
                     @endif
-                    <label class="form-label" for="file">{{ $book->hasFile() ? 'استبدال الملف' : 'رفع ملف' }}</label>
-                    <input id="file" type="file" name="file" class="form-control{{ $err('file') }}" accept=".{{ implode(',.', $books['mimes']) }}">
-                    @error('file')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    <span class="form-label d-block">{{ $book->hasFile() ? 'استبدال الملف' : 'رفع ملف' }}</span>
+                    <label class="admin-picker{{ $err('file') }}" for="file">
+                        <input id="file" type="file" name="file" class="visually-hidden" accept=".{{ implode(',.', $books['mimes']) }}">
+                        <span class="btn btn-outline-primary btn-sm"><i class="bi bi-folder2-open"></i> اختيار ملف</span>
+                        <span class="admin-picker__name text-secondary" id="file-name">لم يُختر ملف</span>
+                    </label>
+                    @error('file')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                     <div class="form-text">PDF أو EPUB أو Word، حتى {{ $maxMb }} ميغابايت. يُحفظ في Cloudflare R2 ويظهر للزوار زر «قراءة / تحميل».</div>
                 </div>
             </div>
@@ -152,6 +156,12 @@
         var prog = document.getElementById('programme'), wrap = document.getElementById('section-wrap');
         function sync() { wrap.hidden = prog.value !== 'maqra'; }
         prog.addEventListener('change', sync); sync();
+        var file = document.getElementById('file'), name = document.getElementById('file-name');
+        file.addEventListener('change', function () {
+            var f = file.files[0];
+            name.textContent = f ? f.name + ' (' + (f.size / 1048576).toFixed(1) + ' MB)' : 'لم يُختر ملف';
+            name.classList.toggle('text-secondary', !f);
+        });
     })();
 </script>
 @endpush

@@ -7,7 +7,7 @@
 .school-glance__grid .stat__num { font-size: clamp(1.8rem, 6vw, 2.8rem); }
 .school-glance__wide { grid-column: 1 / -1; }
 @media (min-width: 768px) {
-  .school-glance__grid { grid-template-columns: repeat(5, 1fr); }
+  .school-glance__grid { grid-template-columns: repeat(3, 1fr); }
   .school-glance__wide { grid-column: auto; }
 }
 

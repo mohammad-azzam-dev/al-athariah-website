@@ -36,25 +36,26 @@
                 <table class="table table-hover table-striped align-middle mb-0 admin-table">
                     <thead>
                         <tr>
-                            <th style="width: 4rem">الترتيب</th>
+                            <th class="d-none d-xl-table-cell" style="width: 4rem">الترتيب</th>
                             <th>الكتاب</th>
-                            <th>البرنامج / المستوى</th>
-                            <th>المجال</th>
+                            <th class="d-none d-md-table-cell">البرنامج / المستوى</th>
+                            <th class="d-none d-lg-table-cell">المجال</th>
                             <th>النسخة الرقمية</th>
-                            <th>الحالة</th>
+                            <th class="d-none d-md-table-cell">الحالة</th>
                             <th class="text-end">إجراءات</th>
                         </tr>
                     </thead>
                     <tbody>
                     @forelse ($books as $book)
                         <tr>
-                            <td class="text-secondary">{{ $book->sort_order }}</td>
+                            <td class="text-secondary d-none d-xl-table-cell">{{ $book->sort_order }}</td>
                             <td>
                                 <a href="{{ route('admin.books.edit', $book) }}" class="fw-semibold">{{ $book->title }}</a>
                                 <div class="small text-secondary">{{ $book->author ?: 'المؤلف غير مذكور' }} · {{ $book->field }}</div>
+                                <div class="d-md-none mt-1"><span class="badge admin-badge-prog">{{ $programmes[$book->programme] ?? $book->programme }}</span> {!! $book->is_published ? '<span class="badge text-bg-success">منشور</span>' : '<span class="badge text-bg-secondary">مخفي</span>' !!}</div>
                             </td>
-                            <td><span class="badge admin-badge-prog">{{ $programmes[$book->programme] ?? $book->programme }}</span><div class="small text-secondary mt-1">{{ $book->level }}</div></td>
-                            <td class="small">{{ $groups[$book->group] ?? $book->group }}</td>
+                            <td class="d-none d-md-table-cell"><span class="badge admin-badge-prog">{{ $programmes[$book->programme] ?? $book->programme }}</span><div class="small text-secondary mt-1">{{ $book->level }}</div></td>
+                            <td class="small d-none d-lg-table-cell">{{ $groups[$book->group] ?? $book->group }}</td>
                             <td>
                                 @if ($book->hasFile())
                                     <a href="{{ route('library.book.file', $book) }}" target="_blank" rel="noopener" class="badge text-bg-warning text-decoration-none" title="{{ $book->file_name }}">
@@ -64,9 +65,9 @@
                                     <span class="text-secondary small">—</span>
                                 @endif
                             </td>
-                            <td>{!! $book->is_published ? '<span class="badge text-bg-success">منشور</span>' : '<span class="badge text-bg-secondary">مخفي</span>' !!}</td>
-                            <td class="text-end text-nowrap">
-                                <a href="{{ route('admin.books.edit', $book) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i> تعديل</a>
+                            <td class="d-none d-md-table-cell">{!! $book->is_published ? '<span class="badge text-bg-success">منشور</span>' : '<span class="badge text-bg-secondary">مخفي</span>' !!}</td>
+                            <td class="text-end text-nowrap admin-actions">
+                                <a href="{{ route('admin.books.edit', $book) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i><span> تعديل</span></a>
                                 <form method="POST" action="{{ route('admin.books.destroy', $book) }}" class="d-inline" data-confirm="حذف «{{ $book->title }}» وملفه نهائيًا؟">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-sm btn-outline-danger" type="submit" aria-label="حذف {{ $book->title }}"><i class="bi bi-trash"></i></button>

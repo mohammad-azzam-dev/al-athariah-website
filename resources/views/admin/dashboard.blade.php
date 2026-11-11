@@ -78,8 +78,7 @@
                         <tbody>
                         @foreach ($latest as $b)
                             <tr>
-                                <td><a href="{{ route('admin.books.edit', $b) }}" class="fw-semibold">{{ $b->title }}</a><div class="small text-secondary">{{ $b->author ?: 'المؤلف غير مذكور' }}</div></td>
-                                <td class="text-nowrap">@if ($b->hasFile())<span class="badge text-bg-warning"><i class="bi bi-file-earmark-arrow-down"></i> ملف</span>@endif</td>
+                                <td><a href="{{ route('admin.books.edit', $b) }}" class="fw-semibold">{{ $b->title }}</a>@if ($b->hasFile()) <span class="badge text-bg-warning ms-1"><i class="bi bi-file-earmark-arrow-down"></i> ملف</span>@endif<div class="small text-secondary">{{ $b->author ?: 'المؤلف غير مذكور' }}</div></td>
                                 <td class="text-nowrap small text-secondary">{{ $b->updated_at?->diffForHumans() }}</td>
                             </tr>
                         @endforeach

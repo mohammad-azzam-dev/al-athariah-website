@@ -135,6 +135,32 @@
     if (fromHash()) setTimeout(function () { list.scrollIntoView({ block: 'start' }); }, 60);
   });
 
+  /* ---------- Scrollable tables: fade the cut-off edge and show a swipe hint ---------- */
+  (function () {
+    var wraps = $$('.table-wrap');
+    if (!wraps.length) return;
+    function check(w) {
+      var more = w.scrollWidth > w.clientWidth + 4;
+      w.classList.toggle('is-scrollable', more);
+      // RTL: scrollLeft runs from 0 to a negative number
+      w.classList.toggle('is-end', !more || Math.abs(w.scrollLeft) + w.clientWidth >= w.scrollWidth - 4);
+      var hint = w.previousElementSibling && w.previousElementSibling.classList.contains('table-hint') ? w.previousElementSibling : null;
+      if (more && !hint) {
+        hint = document.createElement('p'); hint.className = 'table-hint';
+        hint.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5m0 0l5-5m-5 5l5 5"/></svg> اسحب الجدول لرؤية بقية الأعمدة';
+        w.parentNode.insertBefore(hint, w);
+      }
+      if (hint) hint.hidden = !more;
+    }
+    wraps.forEach(function (w) {
+      w.addEventListener('scroll', function () { check(w); }, { passive: true });
+      check(w);
+    });
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(function () { wraps.forEach(check); }, 150); });
+    // tables inside tabs become measurable when their panel opens
+    document.addEventListener('click', function (e) { if (e.target.closest('[role="tab"]')) setTimeout(function () { wraps.forEach(check); }, 60); });
+  })();
+
   /* ---------- Split heading words ---------- */
   $$('[data-split]').forEach(function (el) {
     var words = el.textContent.trim().split(/\s+/), accent = el.querySelector('[class*="accent"]');

@@ -86,7 +86,7 @@ ul, ol { padding-inline-start: 1.25rem; margin: 0 0 var(--space-3); }
 .section { padding-block: var(--space-7); position: relative; }
 .section--dark { background: var(--green-800); color: #eaf3ee; }
 .section--dark h2, .section--dark h3, .section--dark h4 { color: var(--white); }
-.section--dark a { color: var(--gold-300); }
+.section--dark a:not(.btn) { color: var(--gold-300); }
 .section--mint { background: var(--surface-soft); }
 .section--paper { background: var(--bg-2); }
 .section--pattern::before {
@@ -110,6 +110,7 @@ ul, ol { padding-inline-start: 1.25rem; margin: 0 0 var(--space-3); }
 .grid { display: grid; gap: var(--space-4); }
 @media (min-width: 640px) { .grid--2, .grid--3, .grid--4 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .grid--3 { grid-template-columns: repeat(3, 1fr); } .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .grid--3 > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .stack > * + * { margin-top: var(--space-3); }
 
 /* ---------- Buttons ---------- */
@@ -178,6 +179,7 @@ a.card:hover, .card--hover:hover { transform: translateY(-5px); box-shadow: var(
 .table tbody tr:nth-child(even) td { background: var(--surface-soft); }
 .table tbody tr:hover td { background: var(--surface-tint); }
 .table .num { width: 3.5rem; text-align: center; font-family: var(--font-head); color: var(--heading-soft); font-weight: 600; }
+.table th.num { color: inherit; }
 .table .book { font-family: var(--font-quote); font-size: 1.15rem; }
 
 /* ---------- Tabs ---------- */
@@ -318,3 +320,18 @@ input:focus, select:focus, textarea:focus { border-color: var(--teal-500); outli
   .site-header, .drawer, .to-top, .site-footer { display: none; }
   body { background: #fff; }
 }
+
+/* ---------- Responsive polish (audit: phones → 2560px screens) ---------- */
+/* Reem Kufi's space glyph is very narrow: give headings real word gaps. */
+h1, h2, h3, h4, .brand, .eyebrow { word-spacing: .14em; }
+
+/* Big screens: use more of the width and scale the type up a little. */
+@media (min-width: 1600px) { :root { --container: 1360px; } }
+@media (min-width: 2200px) { html { font-size: 112.5%; } :root { --container: 1480px; } }
+
+/* Wide tables on phones: the cut-off edge fades and a hint says the table scrolls (set by app.js). */
+.table-wrap.is-scrollable:not(.is-end) { -webkit-mask-image: linear-gradient(to left, #000 82%, transparent); mask-image: linear-gradient(to left, #000 82%, transparent); }
+.table-hint { display: flex; align-items: center; gap: .35rem; margin: 0 0 .4rem; font-size: .85rem; color: var(--text-2); }
+.table-hint svg { width: 18px; height: 18px; animation: hint-nudge 1.6s ease-in-out infinite; }
+@keyframes hint-nudge { 50% { transform: translateX(-5px); } }
+@media (prefers-reduced-motion: reduce) { .table-hint svg { animation: none; } }
