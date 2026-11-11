@@ -3,7 +3,7 @@
         <div class="footer__grid">
             <div class="footer__brand">
                 @include('partials.brand', ['light' => true])
-                <p style="margin-top:1rem">«مَنْ سَلَكَ طَرِيقًا يَطْلُبُ فِيهِ عِلْمًا سَلَكَ اللَّهُ بِهِ طَرِيقًا مِنْ طُرُقِ الْجَنَّةِ».</p>
+                <p style="margin-top:1rem">«مَن سلَكَ طريقًا يلتَمِسُ فيهِ علمًا، سَهَّلَ اللَّهُ لَهُ طريقًا إلى الجنَّةِ».</p>
             </div>
             <div>
                 <h3>الأقسام</h3>
