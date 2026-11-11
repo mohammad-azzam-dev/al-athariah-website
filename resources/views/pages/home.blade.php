@@ -173,7 +173,7 @@
             </blockquote>
             <div class="cta" data-anim="fade-up">
                 <h2>جاهز لتبدأ؟</h2>
-                <p>اطّلع على شروط كل مستوى، ثم سجّل عبر موقع المجمع.</p>
+                <p>اطّلع على شروط كل مستوى وخطوات الالتحاق.</p>
                 <div class="cta__actions">
                     <a class="btn btn--primary" href="{{ route('register') }}">كيف أسجّل؟</a>
                 </div>

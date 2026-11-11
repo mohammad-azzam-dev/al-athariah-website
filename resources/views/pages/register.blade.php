@@ -113,7 +113,7 @@
                 <span class="eyebrow">استفسار</span>
                 <h2>اكتب لنا استفسارك</h2>
                 <div class="ornament" aria-hidden="true">{!! $star !!}</div>
-                <p>جهّز استفسارك هنا، ثم أكمل التسجيل أو التواصل عبر موقع المجمع الرسمي.</p>
+                <p>اكتب استفسارك عن التسجيل أو المستويات أو المقررات.</p>
             </div>
 
             <div class="card reg-form-card" data-anim="flip">
