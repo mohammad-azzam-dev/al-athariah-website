@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/motion.css') }}">
     @stack('styles')
     <script>document.documentElement.classList.replace('no-js','js')</script>
 </head>
@@ -41,6 +42,7 @@
     @include('partials.footer')
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/motion.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
