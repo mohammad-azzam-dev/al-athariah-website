@@ -117,7 +117,7 @@
       var fs = el('fieldset');
       fs.style.cssText = 'border:0;padding:0;margin:0;min-width:0';
       var lg = el('legend', 'finder__q h3', q.text);
-      lg.style.cssText = 'padding:0;font-family:var(--font-head);font-weight:600;color:var(--green-800)';
+      lg.style.cssText = 'padding:0;font-family:var(--font-head);font-weight:600;color:var(--heading)';
       fs.appendChild(lg);
       var wrapOpts = el('div', 'finder__opts');
       q.opts.forEach(function (o) {

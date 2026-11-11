@@ -1,6 +1,6 @@
 /* المقرأة — page-specific styles */
 .prog { margin-bottom: var(--space-4); }
-.prog h3 small, .prog h4 small { font-family: var(--font-body); font-size: .8em; font-weight: 400; color: var(--ink-2); }
+.prog h3 small, .prog h4 small { font-family: var(--font-body); font-size: .8em; font-weight: 400; color: var(--text-2); }
 .prog h4 { font-size: 1.15rem; margin: var(--space-4) 0 var(--space-2); }
 .prog__list { margin: 0; }
 .prog .badge { margin-bottom: var(--space-2); }
@@ -19,9 +19,9 @@
 @media (min-width: 640px) { .calc__fields { grid-template-columns: 1fr 1fr; } }
 .calc__stats { display: grid; gap: var(--space-3); }
 @media (min-width: 640px) { .calc__stats { grid-template-columns: repeat(3, 1fr); } }
-.calc__stat { background: var(--white); color: var(--green-800); border-radius: var(--r-md); padding: var(--space-3); text-align: center; }
+.calc__stat { background: var(--surface); color: var(--heading); border-radius: var(--r-md); padding: var(--space-3); text-align: center; }
 .calc__stat strong { display: block; font-family: var(--font-head); font-size: 1.35rem; line-height: 1.6; }
-.calc__label { display: block; color: var(--ink-2); font-size: .95rem; }
+.calc__label { display: block; color: var(--text-2); font-size: .95rem; }
 .calc__finish { margin: var(--space-3) 0 var(--space-2); font-size: 1.15rem; }
 .calc__finish strong { color: var(--gold-300); font-family: var(--font-head); }
 .calc__note { color: #c9dccf; font-size: .95rem; margin-bottom: var(--space-2); }
@@ -33,7 +33,7 @@
 .prog { transition: box-shadow .3s, transform .3s var(--ease-out); }
 .prog:hover { box-shadow: var(--shadow-md, 0 12px 28px rgba(30,58,44,.14)); }
 .table tbody tr { transition: background .25s; }
-.table tbody tr:hover { background: var(--mint-50); }
+.table tbody tr:hover { background: var(--surface-soft); }
 .tabs [role="tab"] { transition: background .25s, color .25s, border-color .25s, transform .25s var(--ease-out); }
 .tabs [role="tab"]:hover { transform: translateY(-2px); }
 .calc__stat { transition: transform .3s var(--ease-out), box-shadow .3s; }
