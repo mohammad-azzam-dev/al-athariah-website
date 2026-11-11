@@ -105,3 +105,57 @@
   .js .section__head .ornament::before, .js .section__head .ornament::after { width: 64px; transition: none; }
   .js .section__head .ornament svg { transform: none; opacity: 1; transition: none; }
 }
+
+/* ===================== Layer 2 — every page, every section ===================== */
+
+/* 10. Auto-reveal (classes are added by motion.js only when motion is allowed) */
+.mo { transition: opacity .6s ease, transform .75s cubic-bezier(.22, 1, .36, 1); transition-delay: var(--mo-d, 0ms); }
+.mo:not(.mo-in) { opacity: 0; }
+.mo--up:not(.mo-in) { transform: translateY(22px); }
+.mo--row:not(.mo-in) { transform: translateY(10px); }
+.mo--side:not(.mo-in) { transform: translateX(16px); }          /* RTL: slides in from the reading start */
+.mo--pop:not(.mo-in) { transform: scale(.82); }
+
+/* 11. Section titles word by word */
+.mo-words .mo-w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .08em; }
+.mo-words .mo-w > span { display: inline-block; transform: translateY(105%); transition: transform .8s cubic-bezier(.22, 1, .36, 1) var(--wd, 0ms); }
+.mo-words.mo-in .mo-w > span { transform: none; }
+
+/* 12. Inner-page hero pattern drifts with scroll */
+.page-hero::before { transform: translateY(var(--mo-pat, 0)); }
+
+/* 13. Reading progress line */
+.mo-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 1000; pointer-events: none; transform-origin: right; transform: scaleX(0);
+  background: linear-gradient(to left, var(--gold-500, #c9a24b), var(--teal-500, #2ba39b)); box-shadow: 0 0 10px rgba(201, 162, 75, .5); }
+
+/* 14. Hover polish shared by all pages */
+main .card, main .school-card, main .text-card, main .level-card, main .stat { transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease, border-color .35s ease; }
+@media (hover: hover) {
+  main .card:hover, main .school-card:hover, main .text-card:hover, main .level-card:hover, main .stat:hover { box-shadow: 0 16px 36px rgba(20, 38, 29, .14), 0 0 0 1px rgba(201, 162, 75, .35); }
+  main .school-card:not([data-tilt]):hover, main .text-card:not([data-tilt]):hover, main .level-card:not([data-tilt]):hover, main .stat:not([data-tilt]):hover { transform: translateY(-4px); }
+  main table tbody tr { transition: background-color .25s ease, box-shadow .25s ease; }
+  main table tbody tr:hover { background-color: rgba(201, 162, 75, .09); box-shadow: inset -3px 0 0 var(--gold-500, #c9a24b); }
+  .site-footer a { background: linear-gradient(currentColor, currentColor) no-repeat 100% 100% / 0 1px; transition: background-size .35s ease, color .25s ease; }
+  .site-footer a:hover { background-size: 100% 1px; }
+}
+.btn { position: relative; overflow: hidden; }
+.btn::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 45%; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent); transform: translateX(-160%) skewX(-20deg); }
+@media (hover: hover) { .btn:hover::after { transition: transform .8s ease; transform: translateX(330%) skewX(-20deg); } }
+main input:not([type=checkbox]):not([type=radio]), main select, main textarea { transition: box-shadow .3s ease, border-color .3s ease; }
+main input:focus-visible, main select:focus-visible, main textarea:focus-visible { box-shadow: 0 0 0 4px rgba(43, 163, 155, .18); }
+
+/* 15. Smooth page-to-page transitions (cross-document View Transitions; ignored where unsupported) */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+::view-transition-old(root) { animation: mo-vt-out .22s ease both; }
+::view-transition-new(root) { animation: mo-vt-in .5s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes mo-vt-out { to { opacity: 0; transform: translateY(-8px); } }
+@keyframes mo-vt-in { from { opacity: 0; transform: translateY(14px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mo, .mo-words .mo-w > span { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .mo-progress, .btn::after { display: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  .page-hero::before { transform: none; }
+}

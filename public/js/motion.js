@@ -142,4 +142,96 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { to(current); });
     to(current);
   })();
+
+  /* =====================================================================
+     Layer 2 — every page, every section.
+     Anything not already animated by app.js gets a staggered entrance;
+     section titles reveal word by word; inner-page heroes drift on scroll.
+     ===================================================================== */
+
+  /* ---------- 10. Auto-reveal for un-animated content on all pages ---------- */
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    var groups = [
+      // [selector, variant, allowed inside an already-animated parent?]
+      ['main .card, main .school-card, main .text-card, main .level-card, main .stat, main .note, main .college-note, main .accordion > *, main .reg-cta, main .cta, main .calc, main .table-wrap, main .steps > *', 'up', false],
+      ['main table tbody tr', 'row', true],
+      ['main .section li, main .tabpanel li, main .subpanel li', 'side', true],
+      ['main .badge, main .chip', 'pop', true],
+      ['.site-footer .footer__brand, .site-footer .footer__grid > *, .site-footer .footer__bottom', 'up', false]
+    ];
+    // components with their own open/close or scroll animations keep them
+    var skip = 'header, dialog, nav, details, .breadcrumb, .lib-grid, .lib-filters, .finder, .drawer, .path, .path__panel, [data-mo-skip]';
+    var variants = ['mo', 'mo-in', 'mo--up', 'mo--row', 'mo--side', 'mo--pop'];
+    var picked = [];
+    groups.forEach(function (g) {
+      $$(g[0]).forEach(function (el) {
+        if (el.classList.contains('mo') || el.closest(skip)) return;
+        if (el.matches('[data-anim], .reveal')) return;
+        if (!g[2] && el.parentElement && el.parentElement.closest('[data-anim], .reveal, [data-stagger]')) return;
+        el.classList.add('mo', 'mo--' + g[1]);
+        picked.push(el);
+      });
+    });
+    // stagger siblings that enter together
+    picked.forEach(function (el) {
+      var sibs = Array.prototype.filter.call(el.parentElement.children, function (c) { return c.classList.contains('mo'); });
+      el.style.setProperty('--mo-d', Math.min(sibs.indexOf(el), 10) * 65 + 'ms');
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target; io.unobserve(el);
+        el.classList.add('mo-in');
+        // hand the element back to its own hover/tilt styles once it has landed
+        var d = parseInt(el.style.getPropertyValue('--mo-d'), 10) || 0;
+        setTimeout(function () { variants.forEach(function (c) { el.classList.toggle(c, false); }); el.style.setProperty('--mo-d', ''); }, d + 900);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    picked.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ---------- 11. Section titles reveal word by word ---------- */
+  $$('main .section__head h2').forEach(function (h) {
+    if (h.children.length || h.hasAttribute('data-split')) return;
+    var text = h.textContent.trim(); if (!text) return;
+    h.setAttribute('aria-label', text);
+    h.innerHTML = text.split(/\s+/).map(function (w, i) {
+      return '<span class="mo-w" aria-hidden="true"><span style="--wd:' + (i * 80 + 120) + 'ms">' + w + '</span></span>';
+    }).join(' ');
+    h.classList.add('mo-words');
+    if ('IntersectionObserver' in window) {
+      var o = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { h.classList.add('mo-in'); o.disconnect(); } }, { threshold: .4 });
+      o.observe(h);
+    } else h.classList.add('mo-in');
+  });
+
+  /* ---------- 12. Inner-page heroes: content drifts and fades as you scroll away ---------- */
+  (function () {
+    var hero = document.querySelector('.page-hero'), inner = hero && hero.querySelector(':scope > .container');
+    if (!inner) return;
+    var ticking = false;
+    function update() {
+      var h = hero.offsetHeight, y = Math.min(window.scrollY, h);
+      inner.style.transform = y ? 'translate3d(0,' + (y * .28).toFixed(1) + 'px,0)' : '';
+      inner.style.opacity = y ? (1 - y / h * .85).toFixed(3) : '';
+      hero.style.setProperty('--mo-pat', (y * .15).toFixed(1) + 'px');
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  })();
+
+  /* ---------- 13. Scroll-linked gold progress line on top of the page ---------- */
+  (function () {
+    var bar = document.createElement('div'); bar.className = 'mo-progress'; bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    var ticking = false;
+    function update() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0).toFixed(4) + ')';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  })();
 })();
