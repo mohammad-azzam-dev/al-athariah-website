@@ -169,6 +169,9 @@
       var li = document.createElement('li'); li.textContent = progById[x.prog].pageLabel + ' — ' + x.level + ' (' + x.method + ')'; al.appendChild(li);
     });
 
+    var file = $('dlg-file');
+    file.hidden = !r.file; $('dlg-nodl').hidden = !!r.file;
+    if (r.file) { file.href = r.file; $('dlg-size').textContent = r.fileSize || ''; $('dlg-size').hidden = !r.fileSize; }
     var link = $('dlg-link'); link.href = p.page + (r.hash ? '#' + r.hash : ''); link.textContent = 'اذهب إلى صفحة ' + p.pageLabel;
     if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
   }

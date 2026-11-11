@@ -133,3 +133,12 @@
   .book.is-in, .lib-dialog[open], .lib-dialog[open]::backdrop, .lib-empty:not([hidden]) { animation: none !important; }
   .lib-grid.lib-ready .book:not(.is-in) { opacity: 1; }
 }
+
+/* Digital copies (uploaded from the admin dashboard) */
+.book__file { position: absolute; top: .55rem; inset-inline-start: .55rem; display: inline-flex; align-items: center; gap: .25rem; font-size: .7rem; font-weight: 700; color: var(--green-900, #14261d); background: var(--gold-300, #e8d29a); border-radius: 999px; padding: .15rem .5rem; box-shadow: 0 2px 8px rgba(0,0,0,.25); z-index: 2; }
+.book__file svg { width: 14px; height: 14px; }
+.lib-dialog__file { display: inline-flex; align-items: center; gap: .45rem; margin: var(--space-3) 0 var(--space-2); margin-inline-end: .5rem; }
+.lib-dialog__file svg { width: 18px; height: 18px; }
+.lib-dialog__file[hidden], .lib-dialog__nodl[hidden] { display: none; }
+.lib-dialog__size { font-size: .75em; background: rgba(255,255,255,.16); border-radius: 999px; padding: .05rem .5rem; }
+.lib-dialog__size[hidden] { display: none; }
