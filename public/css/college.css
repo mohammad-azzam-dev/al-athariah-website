@@ -12,7 +12,13 @@
 .lead { font-family: var(--font-head); font-size: 1.15rem; color: var(--heading); margin-bottom: .25rem; }
 .college-grads { color: var(--heading-soft); font-weight: 600; }
 .college-note { margin-top: var(--space-3); }
-.college-note--bar { background: var(--green-600); color: var(--white); border-inline-start-color: var(--gold-500); font-weight: 600; }
+.college-note--bar { background: var(--green-600); color: var(--white); border-inline-start-color: var(--gold-500); font-weight: 600;
+  list-style: none; display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
+.college-note--bar li { position: relative; }
+.college-note--bar li + li::before { content: ''; position: absolute; inset-inline-start: -.8rem; top: 50%; width: 5px; height: 5px; border-radius: 50%; background: var(--gold-300); transform: translateY(-50%); }
+.college-note--short { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; }
+.college-tracks { display: inline-flex; flex-wrap: wrap; gap: .4rem; }
+.college-tracks span { padding: .15rem .7rem; border-radius: 999px; background: var(--surface-tint, rgba(43, 163, 155, .12)); color: var(--heading); font-size: .9rem; font-weight: 600; }
 .tabs--sub { margin-top: var(--space-3); }
 .tabs--sub [role="tab"] { background: var(--surface-tint); border-color: transparent; }
 .tabs--sub [role="tab"][aria-selected="true"] { background: var(--teal-600); border-color: var(--teal-600); color: var(--white); }
@@ -42,4 +48,8 @@ tr[hidden] { display: none; }
 }
 @media (max-width: 639px) {
   .table--pairs td { padding: .6rem .75rem; font-size: .95rem; }
+}
+@media (max-width: 639.98px) {
+  .college-note--bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem 1rem; }
+  .college-note--bar li + li::before { display: none; }
 }

@@ -42,7 +42,10 @@
                     </a>
                 @endforeach
             </div>
-            <p class="note college-note" data-anim="fade-up">{{ $data['qualifying_note'] }}</p>
+            <p class="note college-note college-note--short" data-anim="fade-up">
+                <strong>{{ $data['qualifying_note']['title'] }}:</strong> {{ $data['qualifying_note']['text'] }}
+                <span class="college-tracks" aria-label="التخصصات">@foreach ($data['qualifying_note']['tracks'] as $t)<span>{{ $t }}</span>@endforeach</span>
+            </p>
         </div>
     </section>
 
@@ -89,7 +92,7 @@
                                 @endforeach
                             </tbody>
                         </table></div>
-                        <p class="note college-note college-note--bar" data-anim="fade-right">{{ $dp['bar'] }}</p>
+                        <ul class="note college-note college-note--bar" data-anim="fade-right" aria-label="مدة الدراسة">@foreach ($dp['bar'] as $fact)<li>{{ $fact }}</li>@endforeach</ul>
                     @else
                         <div class="tabs tabs--sub" role="tablist" data-tabs aria-label="{{ $dp['aria'] }}">
                             @foreach ($dp['specialties'] as $sp)
