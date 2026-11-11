@@ -80,3 +80,4 @@
 .marquee__item::after { content: '✦'; position: absolute; inset-inline-end: -.5rem; color: var(--teal-500); font-size: .8rem; top: .45rem; }
 .house__arch { transition: transform .5s var(--ease-out), border-radius .5s var(--ease-out); }
 .house:hover .house__arch { transform: translateY(-6px) scale(1.06); border-radius: 999px 999px 40px 40px; }
+.hero__mark { filter: drop-shadow(0 0 6px rgba(232,210,154,.35)); }

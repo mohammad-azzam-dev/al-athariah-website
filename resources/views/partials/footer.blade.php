@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer__grid">
             <div class="footer__brand">
-                @include('partials.brand')
+                @include('partials.brand', ['light' => true])
                 <p style="margin-top:1rem">«مَنْ سَلَكَ طَرِيقًا يَطْلُبُ فِيهِ عِلْمًا سَلَكَ اللَّهُ بِهِ طَرِيقًا مِنْ طُرُقِ الْجَنَّةِ».</p>
             </div>
             <div>

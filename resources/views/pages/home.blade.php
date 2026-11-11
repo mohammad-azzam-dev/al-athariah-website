@@ -37,9 +37,9 @@
                         <g fill="none" stroke="#C9A24B" stroke-width="1.4">
                             <rect x="40" y="40" width="120" height="120" class="draw"/>
                             <rect x="40" y="40" width="120" height="120" transform="rotate(45 100 100)" class="draw"/>
-                            <circle cx="100" cy="100" r="34" class="draw"/><circle cx="100" cy="100" r="52" stroke-dasharray="3 5"/>
+                            <circle cx="100" cy="100" r="52" stroke-dasharray="3 5"/>
                         </g>
-                        <text x="100" y="124" text-anchor="middle" font-family="Reem Kufi, sans-serif" font-size="74" font-weight="700" fill="#FAF6EC">أثر</text>
+                        <image class="hero__mark" href="{{ asset('images/brand/mark-light.png') }}" x="62" y="58" width="76" height="84" preserveAspectRatio="xMidYMid meet"/>
                     </svg>
                 </div>
                 <span class="hero__orb hero__orb--1" style="--a: -60deg">مدرسة</span>

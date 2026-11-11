@@ -6,6 +6,10 @@
     <title>@yield('title', config('athariyah.name')) | {{ config('athariyah.name') }}</title>
     <meta name="description" content="@yield('description', 'مجمع دار العلوم الأثرية — التعليم الشرعي الرقمي التفاعلي: مدرسة وكلية ومكتبة ومقرأة في مكان واحد.')">
     <meta name="theme-color" content="#1E3A2C">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+    <meta property="og:image" content="{{ asset('images/brand/logo.png') }}">
     <meta property="og:title" content="@yield('title', config('athariyah.name'))">
     <meta property="og:locale" content="ar_AR">
     <link rel="preconnect" href="https://fonts.googleapis.com">
