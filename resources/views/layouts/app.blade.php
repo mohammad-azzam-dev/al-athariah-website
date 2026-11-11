@@ -15,9 +15,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Apply the saved theme (or the system one) before first paint, so there is no flash.
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem('athariyah-theme'); } catch (e) {}
+            if (t !== 'dark' && t !== 'light') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
     @stack('styles')
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
     <script>document.documentElement.classList.replace('no-js','js')</script>
 </head>
 <body data-page="{{ $page ?? Route::currentRouteName() }}">

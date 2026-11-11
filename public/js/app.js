@@ -17,6 +17,43 @@
     setTimeout(function () { intro.classList.add('is-done'); }, 1300);
   })();
 
+  /* ---------- Theme (light / dark) ----------
+     The layout head already set <html data-theme> before paint; this wires the toggle,
+     remembers a manual choice, and follows the system setting until the visitor picks one. */
+  (function () {
+    var root = document.documentElement;
+    var KEY = 'athariyah-theme';
+    var meta = document.querySelector('meta[name="theme-color"]');
+    var btns = $$('[data-theme-toggle]');
+    function saved() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function apply(theme, animate) {
+      if (animate && !reduce) {
+        root.classList.add('theme-switching');
+        setTimeout(function () { root.classList.remove('theme-switching'); }, 500);
+      }
+      root.setAttribute('data-theme', theme);
+      var dark = theme === 'dark';
+      if (meta) meta.setAttribute('content', dark ? '#0B1510' : '#1E3A2C');
+      btns.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(dark));
+        b.setAttribute('aria-label', dark ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي');
+        b.setAttribute('title', dark ? 'الوضع النهاري' : 'الوضع الليلي');
+      });
+    }
+    apply(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+        apply(next, true);
+      });
+    });
+    var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq && mq.addEventListener) {
+      mq.addEventListener('change', function (e) { if (!saved()) apply(e.matches ? 'dark' : 'light', true); });
+    }
+  })();
+
   /* ---------- Drawer ---------- */
   (function () {
     var drawer = document.getElementById('drawer');
