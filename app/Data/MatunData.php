@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-/** Static content for the Matun page (source: الدليل الشامل ١٤٤٧هـ). */
+/** Static content for the Matun page (source: الدليل الشامل ١٤٤٨هـ). */
 class MatunData
 {
     public static function get(): array
@@ -45,9 +45,7 @@ class MatunData
                 ],
             ],
             'note' => [
-                'text' => 'لمزيد من المعلومات والتفاصيل، وللاطلاع على المناهج والمقررات، وفي حال رغبتكم بالتواصل أو التسجيل:',
-                'url' => 'https://alathariah.org',
-                'url_label' => 'www.alathariah.org',
+                'text' => 'لمزيد من المعلومات والتفاصيل، وفي حال رغبتكم بالتواصل أو التسجيل:',
             ],
         ];
     }

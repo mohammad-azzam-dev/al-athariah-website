@@ -105,8 +105,6 @@
                 <div class="finder__stage" id="finderBody" aria-live="polite"></div>
                 <noscript><p>تحتاج هذه الأداة إلى تفعيل جافاسكربت. يمكنك استعراض المستويات أعلاه.</p></noscript>
             </div>
-
-            <p class="finder__disclaimer note">{{ $finder['disclaimer'] }} <a href="{{ config('athariyah.website') }}" target="_blank" rel="noopener">alathariah.org</a>.</p>
         </div>
     </section>
 @endsection

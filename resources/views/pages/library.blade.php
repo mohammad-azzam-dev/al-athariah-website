@@ -9,11 +9,11 @@
     $groups = collect($data['groups'])->keyBy('id');
     $progs = collect($data['programmes'])->keyBy('id');
     $total = count($data['records']);
-    $arNum = fn ($n) => strtr((string) $n, '0123456789', '٠١٢٣٤٥٦٧٨٩');
+    $arNum = fn ($n) => strtr((string) $n, ['0' => '٠', '1' => '١', '2' => '٢', '3' => '٣', '4' => '٤', '5' => '٥', '6' => '٦', '7' => '٧', '8' => '٨', '9' => '٩']);
     $star = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="14" height="14"/><rect x="5" y="5" width="14" height="14" transform="rotate(45 12 12)"/></svg>';
     $js = [
         'groups' => $data['groups'],
-        'programmes' => collect($data['programmes'])->map(fn ($p) => $p + ['page' => route($p['route'])])->all(),
+        'programmes' => collect($data['programmes'])->map(fn ($p) => $p + ['page' => route($p['route']).(isset($p['hash']) ? '#'.$p['hash'] : '')])->all(),
         'records' => $data['records'],
     ];
 @endphp
@@ -98,14 +98,14 @@
                 </article>
                 <article class="card card--glow" data-tilt>
                     <h3>خطّط لمسارك</h3>
-                    <p>تتبّع كتب كل برنامج: المدرسة، ثم الكلية، ثم المتون، وانتقل من البطاقة إلى صفحة البرنامج لتعرف المزيد.</p>
+                    <p>تتبّع كتب كل برنامج: المدرسة، ثم الكلية، ثم المقرأة، وانتقل من البطاقة إلى صفحة البرنامج لتعرف المزيد.</p>
                 </article>
                 <article class="card card--glow" data-tilt>
                     <h3>ابحث بسهولة</h3>
                     <p>يتجاهل البحث التشكيل ويوحّد صور الهمزة والتاء المربوطة والياء، فتجد الكتاب سواء كتبته مشكولًا أو غير مشكول.</p>
                 </article>
             </div>
-            <p class="note lib-note" data-anim="fade-up"><strong>تنبيه:</strong> النسخ الرقمية للقراءة غير متاحة بعد، ولذلك لا توجد في هذه الصفحة روابط تحميل. المكتبة حاليًا فهرس تعريفي فقط. للاطلاع على المناهج والمقررات والتسجيل زر الموقع الرسمي <a href="https://alathariah.org" rel="noopener" target="_blank">alathariah.org</a>.</p>
+            <p class="note lib-note" data-anim="fade-up"><strong>تنبيه:</strong> النسخ الرقمية للقراءة غير متاحة بعد، ولذلك لا توجد في هذه الصفحة روابط تحميل. المكتبة حاليًا فهرس تعريفي فقط.</p>
         </div>
     </section>
 

@@ -30,12 +30,7 @@ class PageController extends Controller
 
     public function maqra(): View
     {
-        return view('pages.maqra', ['data' => MaqraData::get()]);
-    }
-
-    public function matun(): View
-    {
-        return view('pages.matun', ['data' => MatunData::get()]);
+        return view('pages.maqra', ['data' => MaqraData::get(), 'matun' => MatunData::get()]);
     }
 
     public function library(): View

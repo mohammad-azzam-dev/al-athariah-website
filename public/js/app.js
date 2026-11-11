@@ -77,8 +77,25 @@
         if (n) { e.preventDefault(); select(n); n.focus(); }
       });
     });
-    var init = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
+    // A URL hash such as #matun (or #panel-matun) opens the matching tab.
+    function fromHash() {
+      var h = location.hash.replace(/^#/, '');
+      if (!h) return null;
+      return tabs.filter(function (t) { var c = t.getAttribute('aria-controls'); return c === h || c === 'panel-' + h; })[0] || null;
+    }
+    var init = fromHash() || tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
     if (init) select(init);
+    function openFromHash() {
+      var t = fromHash();
+      if (t) { select(t); list.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
+    }
+    window.addEventListener('hashchange', openFromHash);
+    // A link to the hash already in the URL fires no hashchange, so handle in-page tab links directly.
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (a && a.getAttribute('href') === location.hash) setTimeout(openFromHash, 0);
+    });
+    if (fromHash()) setTimeout(function () { list.scrollIntoView({ block: 'start' }); }, 60);
   });
 
   /* ---------- Split heading words ---------- */

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'المدرسة الأثرية — برنامج درجات')
-@section('description', 'المدرسة الأثرية: برنامج «درجات» العلمي التدريجي، مدته سنتان، ويؤهلك للالتحاق بدبلوم العلوم الشرعية في الكلية الأثرية.')
+@section('description', 'المدرسة الأثرية: برنامج «درجات» العلمي التدريجي في ٢٥ مادة، ويؤهلك للالتحاق بدبلوم العلوم الشرعية في الكلية الأثرية.')
 
 @push('styles')<link rel="stylesheet" href="{{ asset('css/school.css') }}">@endpush
 @push('scripts')<script src="{{ asset('js/school.js') }}"></script>@endpush
@@ -37,22 +37,6 @@
                         <span class="stat__label">{{ $g['label'] }}</span>
                     </div>
                 @endforeach
-            </div>
-        </div>
-    </section>
-
-    <section class="section section--mint" id="about">
-        <div class="container school-intro">
-            <div data-anim="fade-right">
-                <span class="eyebrow">لماذا هذا القسم؟</span>
-                <h2>علمٌ شرعي يصل إليك أينما كنت</h2>
-                @foreach ($data['intro'] as $p)<p>{{ $p }}</p>@endforeach
-            </div>
-            <div data-anim="fade-left" data-delay="150">
-                <figure class="quote school-quote">
-                    {{ $data['quote']['text'] }}
-                    <cite>{{ $data['quote']['cite'] }}</cite>
-                </figure>
             </div>
         </div>
     </section>
@@ -135,7 +119,7 @@
 
             <p class="school-empty" id="empty-msg" hidden>لا توجد مواد مطابقة لبحثك. جرّب كلمة أخرى أو اختر «الكل».</p>
 
-            <p class="school-footnote" data-anim="zoom">{{ $data['footnote'] }}</p>
+            @if (!empty($data['footnote']))<p class="school-footnote" data-anim="zoom">{{ $data['footnote'] }}</p>@endif
         </div>
     </section>
 

@@ -2,8 +2,8 @@
     <div class="container">
         <div class="footer__grid">
             <div class="footer__brand">
-                @include('partials.brand')
-                <p style="margin-top:1rem">«مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ».</p>
+                @include('partials.brand', ['light' => true])
+                <p style="margin-top:1rem">«مَنْ سَلَكَ طَرِيقًا يَطْلُبُ فِيهِ عِلْمًا سَلَكَ اللَّهُ بِهِ طَرِيقًا مِنْ طُرُقِ الْجَنَّةِ».</p>
             </div>
             <div>
                 <h3>الأقسام</h3>
@@ -11,7 +11,6 @@
                     <li><a href="{{ route('college') }}">الكلية الأثرية</a></li>
                     <li><a href="{{ route('school') }}">المدرسة الأثرية</a></li>
                     <li><a href="{{ route('maqra') }}">المقرأة الأثرية</a></li>
-                    <li><a href="{{ route('matun') }}">قسم المتون العلمية</a></li>
                     <li><a href="{{ route('library') }}">المكتبة الأثرية</a></li>
                 </ul>
             </div>
@@ -26,9 +25,8 @@
             <div>
                 <h3>تواصل معنا</h3>
                 <ul>
-                    <li><a href="{{ config('athariyah.website') }}" rel="noopener" target="_blank">alathariah.org</a></li>
                     <li>{{ config('athariyah.tagline') }}</li>
-                    <li>العام {{ config('athariyah.year') }}</li>
+                    <li><a href="{{ route('register') }}#contact">نموذج الاستفسار</a></li>
                 </ul>
             </div>
         </div>

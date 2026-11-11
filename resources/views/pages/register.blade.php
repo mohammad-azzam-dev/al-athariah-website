@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'التسجيل والتواصل')
-@section('description', 'خطوات الالتحاق بقسم التعليم عن بُعد في مجمع دار العلوم الأثرية، والمتطلبات لكل مستوى، والأسئلة الشائعة، والتسجيل عبر alathariah.org.')
+@section('description', 'خطوات الالتحاق بقسم التعليم عن بُعد في مجمع دار العلوم الأثرية، والمتطلبات لكل مستوى، والأسئلة الشائعة، ونموذج الاستفسار.')
 
 @push('styles')<link rel="stylesheet" href="{{ asset('css/register.css') }}">@endpush
 
 @php
     $star = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="14" height="14"/><rect x="5" y="5" width="14" height="14" transform="rotate(45 12 12)"/></svg>';
-    $site = $data['site_url'];
     $req = $data['requirements'];
 @endphp
 
@@ -18,7 +17,7 @@
             <h1 data-anim="fade-up">التسجيل والتواصل</h1>
             <p data-anim="fade-up" data-delay="120">{{ $data['hero'] }}</p>
             <div class="page-hero__actions" data-anim="fade-up" data-delay="240">
-                <a class="btn btn--primary btn--lg" href="{{ $site }}" target="_blank" rel="noopener">سجّل عبر {{ $data['site_label'] }}</a>
+                <a class="btn btn--primary btn--lg" href="#contact">أرسل استفسارك</a>
                 <a class="btn btn--ghost" href="{{ route('path') }}#finder">أين أبدأ؟</a>
             </div>
         </div>
@@ -40,7 +39,7 @@
                             <p>
                                 @foreach ($step['links'] as $l)
                                     @php
-                                        $href = $l[0] === 'external' ? $site : (str_contains($l[0], '#') ? route(explode('#', $l[0])[0]).'#'.explode('#', $l[0])[1] : route($l[0]));
+                                        $href = (str_contains($l[0], '#') ? route(explode('#', $l[0])[0]).'#'.explode('#', $l[0])[1] : route($l[0]));
                                         $ext = $l[0] === 'external';
                                     @endphp
                                     <a href="{{ $href }}" @if ($ext) target="_blank" rel="noopener" @endif>{{ $l[1] }}</a>@if (!$loop->last) · @endif
@@ -114,7 +113,7 @@
                 <span class="eyebrow">استفسار</span>
                 <h2>اكتب لنا استفسارك</h2>
                 <div class="ornament" aria-hidden="true">{!! $star !!}</div>
-                <p>جهّز استفسارك هنا، ثم أكمل التسجيل أو التواصل عبر موقع المجمع الرسمي.</p>
+                <p>اكتب استفسارك عن التسجيل أو المستويات أو المقررات.</p>
             </div>
 
             <div class="card reg-form-card" data-anim="flip">
@@ -143,10 +142,9 @@
 
                 <div class="reg-done" id="inquiryDone" role="status" tabindex="-1" hidden>
                     <h3>جاهز، تبقّت خطوة واحدة</h3>
-                    <p>هذه الصفحة لا ترسل البيانات إلى أي جهة. لإرسال استفسارك أو إتمام التسجيل يرجى التواصل عبر موقع المجمع الرسمي.</p>
+                    <p>هذه نسخة من استفسارك. لا يُرسَل النموذج حاليًا إلى أي جهة؛ احتفظ بالنص لإرساله إلى إدارة المجمع.</p>
                     <blockquote class="reg-done__copy" id="inquiryCopy"></blockquote>
                     <div class="reg-done__actions">
-                        <a class="btn btn--primary" href="{{ $site }}" target="_blank" rel="noopener">الذهاب إلى {{ $data['site_label'] }}</a>
                         <button class="btn btn--ghost" type="button" id="inquiryReset">كتابة استفسار آخر</button>
                     </div>
                 </div>
@@ -158,8 +156,8 @@
         <div class="container">
             <div class="card reg-cta__card" data-anim="zoom">
                 <h2>ابدأ رحلتك اليوم</h2>
-                <p>موقع المجمع هو المرجع للتسجيل والتواصل والاطلاع على المناهج والمقررات.</p>
-                <a class="btn btn--primary btn--lg reg-cta__btn" href="{{ $site }}" target="_blank" rel="noopener">{{ $data['site_label'] }}</a>
+                <p>اعرف مستواك المناسب، ثم أرسل استفسارك.</p>
+                <a class="btn btn--primary btn--lg reg-cta__btn" href="{{ route('path') }}#finder">أين أبدأ؟</a>
             </div>
         </div>
     </section>

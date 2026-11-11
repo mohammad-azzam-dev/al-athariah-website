@@ -18,7 +18,7 @@
         </span>
         <div class="container hero__inner">
             <div class="hero__text">
-                <span class="hero__tag" data-anim="fade-down">قسم التعليم عن بُعد · ١٤٤٧هـ</span>
+                <span class="hero__tag" data-anim="fade-down">قسم التعليم عن بُعد</span>
                 <h1 data-anim="fade-up" data-delay="100">رحلتك في <span class="hero__accent">طلب العلم</span> تبدأ من هنا</h1>
                 <p data-anim="fade-up" data-delay="250">مدرسة، وكلية، ومكتبة، ومقرأة في مكان واحد. تعلَّم العلم الشرعي من أصوله، بخطة واضحة تأخذ بيدك من أول متن إلى التخصص — مباشرًا وتفاعليًا من بيتك.</p>
                 <div class="hero__actions" data-anim="fade-up" data-delay="400">
@@ -27,7 +27,7 @@
                 </div>
                 <ul class="hero__facts" aria-label="لمحة سريعة" data-anim="fade-up" data-delay="550">
                     <li><strong data-count="4">٤</strong> مستويات</li>
-                    <li><strong data-count="26">٢٦</strong> مادة في «درجات»</li>
+                    <li><strong data-count="25">٢٥</strong> مادة في «درجات»</li>
                     <li><strong data-count="10">١٠</strong> أجزاء حفظ لكل مستوى</li>
                 </ul>
             </div>
@@ -37,14 +37,15 @@
                         <g fill="none" stroke="#C9A24B" stroke-width="1.4">
                             <rect x="40" y="40" width="120" height="120" class="draw"/>
                             <rect x="40" y="40" width="120" height="120" transform="rotate(45 100 100)" class="draw"/>
-                            <circle cx="100" cy="100" r="34" class="draw"/><circle cx="100" cy="100" r="52" stroke-dasharray="3 5"/>
+                            <circle cx="100" cy="100" r="52" stroke-dasharray="3 5"/>
                         </g>
-                        <text x="100" y="124" text-anchor="middle" font-family="Reem Kufi, sans-serif" font-size="74" font-weight="700" fill="#FAF6EC">أثر</text>
+                        <image class="hero__mark" href="{{ asset('images/brand/mark-light.png') }}" x="62" y="58" width="76" height="84" preserveAspectRatio="xMidYMid meet"/>
                     </svg>
                 </div>
-                <span class="hero__orb hero__orb--1 float">مدرسة</span>
-                <span class="hero__orb hero__orb--2 float float--slow">كلية</span>
-                <span class="hero__orb hero__orb--3 float">مكتبة</span>
+                <span class="hero__orb hero__orb--1" style="--a: -60deg">مدرسة</span>
+                <span class="hero__orb hero__orb--2" style="--a: 30deg">كلية</span>
+                <span class="hero__orb hero__orb--3" style="--a: 210deg">مكتبة</span>
+                <span class="hero__orb hero__orb--4" style="--a: 120deg">مقرأة</span>
             </div>
         </div>
     </section>
@@ -56,24 +57,24 @@
         </div></div>
     </div>
 
-    <!-- ===== Three houses ===== -->
+    <!-- ===== Four houses: school, college, maqra, library ===== -->
     <section class="section" id="houses">
         <div class="container">
             <div class="section__head" data-anim="fade-up">
-                <span class="eyebrow">ثلاثة بيوت للعلم</span>
+                <span class="eyebrow">أربعة بيوت للعلم</span>
                 <h2>اختر بيتك الأول</h2>
                 <div class="ornament" aria-hidden="true">{!! $star !!}</div>
                 <p>كل قسم له صفحته وبرنامجه، وكلها تتكامل في مسار واحد من المرحلة الأولى حتى التخصص.</p>
             </div>
 
-            <div class="grid grid--3 houses" data-stagger="140">
+            <div class="grid grid--4 houses" data-stagger="140">
                 <a class="card house card--glow" data-tilt href="{{ route('school') }}">
                     <div class="house__arch house__arch--school" aria-hidden="true">
                         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 10 6 24l26 14 26-14-26-14Z"/><path d="M16 31v14c0 4 7 8 16 8s16-4 16-8V31"/><path d="M58 24v18"/></svg>
                     </div>
                     <span class="badge badge--mint">البداية</span>
                     <h3>المدرسة الأثرية</h3>
-                    <p>برنامج «درجات»: تدرُّج علمي في ٢٦ مادة — التوحيد والفقه والحديث واللغة — لخريجي الثانويات وغيرهم.</p>
+                    <p>برنامج «درجات»: البرنامج العلمي التدريجي في ٢٥ مادة — التوحيد والعقيدة والفقه والحديث واللغة وغيرها.</p>
                     <span class="house__more">تعرّف على المدرسة ←</span>
                 </a>
                 <a class="card house card--glow" data-tilt href="{{ route('college') }}">
@@ -82,8 +83,17 @@
                     </div>
                     <span class="badge">التخصص</span>
                     <h3>الكلية الأثرية</h3>
-                    <p>دبلوم العلوم الشرعية، ثم الدبلوم التخصصي أو التأهيلي، ثم المسلكي — بمقررات معتمدة ومجالس تفاعلية.</p>
+                    <p>دبلوم العلوم الشرعية، ثم الدبلوم التخصصي أو التأهيلي، ثم الدبلوم المسلكي — بدراسة تفاعلية وذاتية.</p>
                     <span class="house__more">استعرض الدبلومات ←</span>
+                </a>
+                <a class="card house card--glow" data-tilt href="{{ route('maqra') }}">
+                    <div class="house__arch house__arch--maqra" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 16c-6-4-14-5-22-3v36c8-2 16-1 22 3 6-4 14-5 22-3V13c-8-2-16-1-22 3Z"/><path d="M32 16v36"/></svg>
+                    </div>
+                    <span class="badge badge--mint">الحفظ</span>
+                    <h3>المقرأة الأثرية</h3>
+                    <p>قسم القرآن الكريم، وقسم السنة النبوية، وقسم المتون العلمية: تصحيح التلاوة، وحفظ القرآن والأحاديث والمتون.</p>
+                    <span class="house__more">ادخل المقرأة ←</span>
                 </a>
                 <a class="card house card--glow" data-tilt href="{{ route('library') }}">
                     <div class="house__arch house__arch--library" aria-hidden="true">
@@ -95,16 +105,6 @@
                     <span class="house__more">ابحث في المكتبة ←</span>
                 </a>
             </div>
-
-            <div class="grid grid--2 halls" data-stagger="140">
-                <a class="card hall card--glow" href="{{ route('maqra') }}">
-                    <h3>المقرأة الأثرية</h3>
-                    <p>تصحيح التلاوة، وحفظ القرآن كاملًا، وحفظ الأحاديث النبوية على منهج الإمام الألباني.</p>
-                </a>
-                <a class="card hall card--glow" href="{{ route('matun') }}">
-                    <h3>قسم المتون العلمية</h3>
-                    <p>«صناعة المتعلّمين»: جادة المتعلمين، ثم نخبة المتعلمين، ثم صفوة المتعلمين.</p>
-                </a>
             </div>
         </div>
     </section>
@@ -156,7 +156,7 @@
                 <h2>برامج مصمَّمة بعناية</h2>
             </div>
             <div class="grid grid--4 stats" data-stagger="120">
-                <div class="card stat"><span class="stat__num" data-count="635">٦٣٥</span><span class="stat__label">مجلسًا في سنتين</span></div>
+                <div class="card stat"><span class="stat__num" data-count="635">٦٣٥</span><span class="stat__label">مجلسًا في دبلوم العلوم الشرعية</span></div>
                 <div class="card stat"><span class="stat__num" data-count="4323" data-sep>٤٬٣٢٣</span><span class="stat__label">حديثًا في برنامج الإمام الألباني</span></div>
                 <div class="card stat"><span class="stat__num" data-count="30">٣٠</span><span class="stat__label">جزءًا في حفظ القرآن كاملًا</span></div>
                 <div class="card stat"><span class="stat__num" data-count="15">١٥</span><span class="stat__label">متنًا في جادة المتعلمين</span></div>
@@ -168,15 +168,14 @@
     <section class="section section--paper">
         <div class="container">
             <blockquote class="quote" data-anim="flip">
-                «مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ»
-                <cite>رواه أبو داود والترمذي من حديث أبي الدرداء رضي الله عنه</cite>
+                «مَنْ سَلَكَ طَرِيقًا يَطْلُبُ فِيهِ عِلْمًا سَلَكَ اللَّهُ بِهِ طَرِيقًا مِنْ طُرُقِ الْجَنَّةِ»
+                <cite>عن أبي الدرداء رضي الله عنه — من مقدمة الدليل الشامل</cite>
             </blockquote>
             <div class="cta" data-anim="fade-up">
                 <h2>جاهز لتبدأ؟</h2>
-                <p>اطّلع على شروط كل مستوى، ثم سجّل عبر موقع المجمع.</p>
+                <p>اطّلع على شروط كل مستوى وخطوات الالتحاق.</p>
                 <div class="cta__actions">
                     <a class="btn btn--primary" href="{{ route('register') }}">كيف أسجّل؟</a>
-                    <a class="btn btn--ghost" href="{{ config('athariyah.website') }}" target="_blank" rel="noopener">موقع المجمع alathariah.org</a>
                 </div>
             </div>
         </div>

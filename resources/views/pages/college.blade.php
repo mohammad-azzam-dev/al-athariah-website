@@ -16,7 +16,7 @@
         <div class="container">
             <ol class="breadcrumb" data-anim="fade-down"><li><a href="{{ route('home') }}">الرئيسية</a></li><li>الكلية الأثرية</li></ol>
             <h1 data-anim="fade-up" data-delay="100">الكلية الأثرية</h1>
-            <p data-anim="fade-up" data-delay="220">ثلاثة دبلومات متدرّجة في العلوم الشرعية، من دبلوم العلوم الشرعية إلى التخصص والتأهيل ثم المسلك.</p>
+            <p data-anim="fade-up" data-delay="220">دبلومات متدرّجة في العلوم الشرعية: دبلوم العلوم الشرعية، ثم الدبلوم التخصصي أو التأهيلي، ثم الدبلوم المسلكي.</p>
             <div class="page-hero__actions" data-anim="fade-up" data-delay="340">
                 <a class="btn btn--primary" href="{{ route('register') }}">سجّل الآن</a>
                 <a class="btn btn--ghost" href="{{ route('path') }}">اعرف مسارك</a>
