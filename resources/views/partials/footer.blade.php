@@ -11,7 +11,6 @@
                     <li><a href="{{ route('college') }}">الكلية الأثرية</a></li>
                     <li><a href="{{ route('school') }}">المدرسة الأثرية</a></li>
                     <li><a href="{{ route('maqra') }}">المقرأة الأثرية</a></li>
-                    <li><a href="{{ route('maqra') }}#matun">قسم المتون العلمية</a></li>
                     <li><a href="{{ route('library') }}">المكتبة الأثرية</a></li>
                 </ul>
             </div>
@@ -26,9 +25,8 @@
             <div>
                 <h3>تواصل معنا</h3>
                 <ul>
-                    <li><a href="{{ config('athariyah.website') }}" rel="noopener" target="_blank">alathariah.org</a></li>
                     <li>{{ config('athariyah.tagline') }}</li>
-                    <li>العام {{ config('athariyah.year') }}</li>
+                    <li><a href="{{ route('register') }}#contact">نموذج الاستفسار</a></li>
                 </ul>
             </div>
         </div>

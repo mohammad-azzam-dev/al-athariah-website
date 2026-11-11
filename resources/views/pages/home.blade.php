@@ -18,7 +18,7 @@
         </span>
         <div class="container hero__inner">
             <div class="hero__text">
-                <span class="hero__tag" data-anim="fade-down">قسم التعليم عن بُعد · ١٤٤٨هـ</span>
+                <span class="hero__tag" data-anim="fade-down">قسم التعليم عن بُعد</span>
                 <h1 data-anim="fade-up" data-delay="100">رحلتك في <span class="hero__accent">طلب العلم</span> تبدأ من هنا</h1>
                 <p data-anim="fade-up" data-delay="250">مدرسة، وكلية، ومكتبة، ومقرأة في مكان واحد. تعلَّم العلم الشرعي من أصوله، بخطة واضحة تأخذ بيدك من أول متن إلى التخصص — مباشرًا وتفاعليًا من بيتك.</p>
                 <div class="hero__actions" data-anim="fade-up" data-delay="400">

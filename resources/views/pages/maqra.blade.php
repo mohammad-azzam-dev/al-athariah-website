@@ -138,7 +138,7 @@
     <section class="section">
         <div class="container">
             <div class="note" data-anim="fade-up">
-                <p>{{ $data['note']['text'] }} <a href="{{ $data['note']['url'] }}" target="_blank" rel="noopener">{{ $data['note']['url_label'] }}</a></p>
+                <p>{{ $data['note']['text'] }}</p>
                 <p><a class="btn btn--primary btn--sm" href="{{ route('register') }}">سجّل الآن</a> <a class="btn btn--ghost btn--sm" href="#matun">قسم المتون العلمية</a></p>
             </div>
         </div>

@@ -183,7 +183,6 @@
       var ul = el('ul', 'finder__recs');
       recs.forEach(function (r, i) { var li = el('li', '', r); li.style.setProperty('--i', i); ul.appendChild(li); });
       box.appendChild(ul);
-      box.appendChild(el('p', 'note', 'هذه نتيجة استرشادية؛ التحديد النهائي للمستوى تقرره الإدارة عبر alathariah.org.'));
 
       var actions = el('div', 'finder__actions');
       var show = el('button', 'btn btn--dark', 'اعرض هذا المستوى في المسار');

@@ -41,22 +41,6 @@
         </div>
     </section>
 
-    <section class="section section--mint" id="about">
-        <div class="container school-intro">
-            <div data-anim="fade-right">
-                <span class="eyebrow">لماذا هذا القسم؟</span>
-                <h2>علمٌ شرعي يصل إليك أينما كنت</h2>
-                @foreach ($data['intro'] as $p)<p>{{ $p }}</p>@endforeach
-            </div>
-            <div data-anim="fade-left" data-delay="150">
-                <figure class="quote school-quote">
-                    {{ $data['quote']['text'] }}
-                    <cite>{{ $data['quote']['cite'] }}</cite>
-                </figure>
-            </div>
-        </div>
-    </section>
-
     <section class="section" id="subjects">
         <div class="container">
             <div class="section__head" data-anim="fade-up">

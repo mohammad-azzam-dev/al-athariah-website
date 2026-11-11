@@ -5,5 +5,5 @@
          src="{{ asset($light ? 'images/brand/logo-light-800.png' : 'images/brand/logo-800.png') }}"
          srcset="{{ asset($light ? 'images/brand/logo-light-800.png' : 'images/brand/logo-800.png') }} 800w, {{ asset($light ? 'images/brand/logo-light.png' : 'images/brand/logo.png') }} 1590w"
          sizes="(max-width: 640px) 150px, 200px"
-         width="800" height="248" alt="{{ config('athariyah.name') }} — alathariah.org">
+         width="800" height="248" alt="{{ config('athariyah.name') }}">
 </a>
