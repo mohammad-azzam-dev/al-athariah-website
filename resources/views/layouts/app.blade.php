@@ -26,6 +26,7 @@
     </script>
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/motion.css') }}">
     @stack('styles')
     <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
     <script>document.documentElement.classList.replace('no-js','js')</script>
@@ -51,6 +52,7 @@
     @include('partials.footer')
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/motion.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
