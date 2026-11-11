@@ -6,17 +6,6 @@
   var AR = '٠١٢٣٤٥٦٧٨٩';
   var toAr = function (n) { return String(n).replace(/\d/g, function (d) { return AR[d]; }); };
 
-  /* ---------- Page intro (once per session) ---------- */
-  (function () {
-    var intro = document.querySelector('.page-intro');
-    if (!intro || reduce) return;
-    var seen = false;
-    try { seen = sessionStorage.getItem('athariyah-intro') === '1'; sessionStorage.setItem('athariyah-intro', '1'); } catch (e) {}
-    if (seen || document.body.getAttribute('data-page') !== 'home') return;
-    document.documentElement.classList.add('show-intro');
-    setTimeout(function () { intro.classList.add('is-done'); }, 1300);
-  })();
-
   /* ---------- Theme (light / dark) ----------
      The layout head already set <html data-theme> before paint; this wires the toggle,
      remembers a manual choice, and follows the system setting until the visitor picks one. */

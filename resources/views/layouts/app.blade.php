@@ -24,6 +24,29 @@
             document.documentElement.setAttribute('data-theme', t);
         })();
     </script>
+    <script>
+        // Loader: full on the first page of a visit; afterwards only if a page is slow (> ~0.5s).
+        (function () {
+            var root = document.documentElement, t0 = Date.now(), first = true;
+            try { first = sessionStorage.getItem('athariyah-loaded') !== '1'; } catch (e) {}
+            if (!first) root.classList.add('loader-late');
+            function done() {
+                var el = document.getElementById('site-loader');
+                if (!el || el.classList.contains('is-done')) return;
+                // on the first visit let the orb finish at least one lap
+                var wait = first ? Math.max(0, 1100 - (Date.now() - t0)) : 0;
+                setTimeout(function () {
+                    el.classList.add('is-done');
+                    root.classList.add('is-loaded');
+                    try { sessionStorage.setItem('athariyah-loaded', '1'); } catch (e) {}
+                    setTimeout(function () { el.hidden = true; }, 700);
+                }, wait);
+            }
+            window.addEventListener('load', done);
+            window.addEventListener('pageshow', function (e) { if (e.persisted) done(); });
+            setTimeout(done, 8000); // never block the page
+        })();
+    </script>
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
     <link rel="stylesheet" href="{{ asset('css/motion.css') }}">
@@ -33,14 +56,14 @@
 </head>
 <body data-page="{{ $page ?? Route::currentRouteName() }}">
     <div class="scroll-progress" aria-hidden="true"></div>
-    <div class="page-intro" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="page-intro__star">
-            <g fill="none" stroke="#C9A24B" stroke-width="2">
-                <rect x="25" y="25" width="70" height="70" pathLength="1"/>
-                <rect x="25" y="25" width="70" height="70" transform="rotate(45 60 60)" pathLength="1"/>
-                <circle cx="60" cy="60" r="20" pathLength="1"/>
-            </g>
-        </svg>
+    <div class="site-loader" id="site-loader" role="status" aria-label="جارٍ تحميل الصفحة">
+        <div class="site-loader__stage" aria-hidden="true">
+            <span class="site-loader__ring"></span>
+            <span class="site-loader__trail"></span>
+            <span class="site-loader__orbit"><span class="site-loader__orb"></span></span>
+            <span class="site-loader__mark"></span>
+        </div>
+        <p class="site-loader__name" aria-hidden="true">{{ config('athariyah.name') }}</p>
     </div>
 
     @include('partials.header')
