@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-/** Static content for the Matun page (source: الدليل الشامل ١٤٤٧هـ). */
+/** Static content for the Matun page (source: الدليل الشامل ١٤٤٨هـ). */
 class MatunData
 {
     public static function get(): array

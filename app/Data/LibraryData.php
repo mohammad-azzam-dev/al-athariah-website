@@ -3,9 +3,9 @@
 namespace App\Data;
 
 /**
- * Static content for the Library page (source: الدليل الشامل — قسم التعليم عن بُعد ١٤٤٧هـ).
+ * Static content for the Library page (source: الدليل الشامل — قسم التعليم عن بُعد ١٤٤٨هـ).
  * author = null means the author is not named in the guide.
- * Converted 1:1 from the old js/library-data.js (87 records).
+ * Updated to the 1448 guide (86 records).
  */
 class LibraryData
 {
@@ -21,7 +21,7 @@ class LibraryData
                 ['id' => 'seerah', 'label' => 'السيرة والتاريخ', 'hue' => 8],
                 ['id' => 'tazkiya', 'label' => 'التزكية والآداب', 'hue' => 330],
                 ['id' => 'firaq', 'label' => 'الأديان والفرق', 'hue' => 48],
-                ['id' => 'general', 'label' => 'منهج وثقافة ودعوة', 'hue' => 195],
+                ['id' => 'general', 'label' => 'منهج ودعوة وخطابة', 'hue' => 195],
             ],
             'programmes' => [
                 ['id' => 'school', 'label' => 'المدرسة', 'route' => 'school', 'pageLabel' => 'المدرسة الأثرية'],
@@ -37,7 +37,7 @@ class LibraryData
                 ['id' => 'b5', 'title' => 'مصطلح الحديث', 'author' => 'ابن عثيمين', 'field' => 'مصطلح الحديث', 'group' => 'hadith', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
                 ['id' => 'b6', 'title' => 'أصول التفسير', 'author' => 'ابن عثيمين', 'field' => 'أصول التفسير', 'group' => 'quran', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
                 ['id' => 'b7', 'title' => 'المنهاج في القواعد الفقهيَّة', 'author' => 'الخليفي', 'field' => 'القواعد الفقهيَّة', 'group' => 'fiqh', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
-                ['id' => 'b8', 'title' => 'محاضرات متنوعة', 'author' => null, 'field' => 'فقه الدعوة', 'group' => 'general', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
+                ['id' => 'b8', 'title' => 'مقرر خاص — فقه الدعوة', 'author' => null, 'field' => 'فقه الدعوة', 'group' => 'general', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'course'],
                 ['id' => 'b9', 'title' => 'النحو الواضح (الابتدائية)', 'author' => 'الجارم وأمين', 'field' => 'النحو', 'group' => 'arabic', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
                 ['id' => 'b10', 'title' => 'قواعد الإملاء', 'author' => 'فهمي النجار', 'field' => 'الإملاء', 'group' => 'arabic', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
                 ['id' => 'b11', 'title' => 'البلاغة الواضحة', 'author' => 'الجارم وأمين', 'field' => 'البلاغة', 'group' => 'arabic', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
@@ -45,16 +45,15 @@ class LibraryData
                 ['id' => 'b13', 'title' => 'القواعد الأصولية', 'author' => 'معاذ الزغبي', 'field' => 'التأصيل العقدي', 'group' => 'aqeeda', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
                 ['id' => 'b14', 'title' => 'عقائد الفرق الضالة', 'author' => 'أم تميم', 'field' => 'الفرق', 'group' => 'firaq', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
                 ['id' => 'b15', 'title' => 'الضوابط المنهجية', 'author' => 'معاذ الزغبي', 'field' => 'المنهج', 'group' => 'general', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
-                ['id' => 'b16', 'title' => 'رياض الصالحين', 'author' => 'النووي', 'field' => 'الحديث', 'group' => 'hadith', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'حفظ', 'note' => 'الكتاب ١–٧', 'kind' => 'book'],
+                ['id' => 'b16', 'title' => 'مختصر رياض الصالحين', 'author' => 'حمد الحمد', 'field' => 'الحديث', 'group' => 'hadith', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'حفظ', 'note' => 'الكتاب ١–٧', 'kind' => 'book'],
                 ['id' => 'b17', 'title' => 'بهجة الناظرين', 'author' => 'سليم الهلالي', 'field' => 'الحديث', 'group' => 'hadith', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'الكتاب ١–٧', 'kind' => 'book'],
-                ['id' => 'b18', 'title' => 'تعظيم العلم', 'author' => 'العصيمي', 'field' => 'أدب الطلب', 'group' => 'tazkiya', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'book'],
-                ['id' => 'b19', 'title' => 'تجربتي في ربع قرن', 'author' => 'محمد العريفي', 'field' => 'الخطابة والإلقاء', 'group' => 'general', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'book'],
+                ['id' => 'b18', 'title' => 'تعظيم العلم', 'author' => 'العصيمي', 'field' => 'أدب الطلب', 'group' => 'tazkiya', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'تفاعلي', 'note' => '', 'kind' => 'book'],
+                ['id' => 'b19', 'title' => 'مقرر خاص — الخطابة والإلقاء', 'author' => null, 'field' => 'الخطابة والإلقاء', 'group' => 'general', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'course'],
                 ['id' => 'b20', 'title' => 'تزكية النفوس', 'author' => 'أحمد فريد', 'field' => 'التزكية', 'group' => 'tazkiya', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'book'],
                 ['id' => 'b21', 'title' => 'المختصر في التفسير', 'author' => 'نخبة من العلماء', 'field' => 'التفسير', 'group' => 'quran', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'book'],
-                ['id' => 'b22', 'title' => 'نحو ثقافة إسلامية أصيلة', 'author' => 'عمر الأشقر', 'field' => 'الثقافة الإسلامية', 'group' => 'general', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'book'],
                 ['id' => 'b23', 'title' => 'روضة الأنوار', 'author' => 'المباركفوري', 'field' => 'السيرة النبوية', 'group' => 'seerah', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'book'],
                 ['id' => 'b24', 'title' => 'الآداب', 'author' => 'الشلهوب', 'field' => 'الآداب العامة', 'group' => 'tazkiya', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'book'],
-                ['id' => 'b25', 'title' => 'سابغات', 'author' => null, 'field' => 'تعزيز اليقين', 'group' => 'tazkiya', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'book'],
+                ['id' => 'b25', 'title' => 'مقرر خاص — تعزيز اليقين', 'author' => null, 'field' => 'تعزيز اليقين', 'group' => 'tazkiya', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'كاملًا', 'kind' => 'course'],
                 ['id' => 'b26', 'title' => 'الموسوعة الميسرة', 'author' => 'فريق (فدا)', 'field' => 'التاريخ الإسلامي', 'group' => 'seerah', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'دراسة ذاتية', 'note' => 'المجلد ١', 'kind' => 'book'],
                 ['id' => 'b27', 'title' => 'حفظ ١٠ أجزاء من القرآن', 'author' => null, 'field' => 'القرآن والتجويد', 'group' => 'quran', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'حفظ واختبار', 'note' => 'تُدرَّس في المقرأة', 'kind' => 'course'],
                 ['id' => 'b28', 'title' => 'التجويد الميسر', 'author' => 'عبد العزيز القارئ', 'field' => 'القرآن والتجويد', 'group' => 'quran', 'prog' => 'school', 'level' => 'برنامج «درجات»', 'method' => 'اختبار تطبيقي', 'note' => '', 'kind' => 'book'],

@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-/** Static content for the Maqra page (source: الدليل الشامل ١٤٤٧هـ). */
+/** Static content for the Maqra page (source: الدليل الشامل ١٤٤٨هـ). */
 class MaqraData
 {
     public static function get(): array
@@ -27,7 +27,7 @@ class MaqraData
                 ],
                 'taj' => [
                     'badge' => 'لحفظ القرآن كاملاً',
-                    'title' => 'برنامج «تاج الوقار» (الذكور) / «حِلية القواوير» (الإناث)',
+                    'title' => 'برنامج «تاج الوقار» (الذكور) / «حِلية القوارير» (الإناث)',
                     'duration' => 'مدّته <strong>٣ سنوات</strong> (شهرين سنويًا استدراك ومراجعة) / <strong>٦ سنوات</strong> (نصف المقادير).',
                     'tables' => [
                         [

@@ -1,7 +1,7 @@
 # مجمع دار العلوم الأثرية — موقع الكلية والمدرسة والمكتبة
 
 Laravel 12 (Blade) · plain CSS in `public/css` · vanilla JS in `public/js` · no Node build step.
-Content source: «الدليل الشامل — قسم التعليم عن بُعد ١٤٤٧هـ».
+Content source: «الدليل الشامل — قسم التعليم عن بُعد ١٤٤٨هـ».
 
 ```bash
 composer install && cp .env.example .env && php artisan key:generate

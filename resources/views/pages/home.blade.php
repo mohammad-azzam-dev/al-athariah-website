@@ -18,7 +18,7 @@
         </span>
         <div class="container hero__inner">
             <div class="hero__text">
-                <span class="hero__tag" data-anim="fade-down">قسم التعليم عن بُعد · ١٤٤٧هـ</span>
+                <span class="hero__tag" data-anim="fade-down">قسم التعليم عن بُعد · ١٤٤٨هـ</span>
                 <h1 data-anim="fade-up" data-delay="100">رحلتك في <span class="hero__accent">طلب العلم</span> تبدأ من هنا</h1>
                 <p data-anim="fade-up" data-delay="250">مدرسة، وكلية، ومكتبة، ومقرأة في مكان واحد. تعلَّم العلم الشرعي من أصوله، بخطة واضحة تأخذ بيدك من أول متن إلى التخصص — مباشرًا وتفاعليًا من بيتك.</p>
                 <div class="hero__actions" data-anim="fade-up" data-delay="400">
@@ -27,7 +27,7 @@
                 </div>
                 <ul class="hero__facts" aria-label="لمحة سريعة" data-anim="fade-up" data-delay="550">
                     <li><strong data-count="4">٤</strong> مستويات</li>
-                    <li><strong data-count="26">٢٦</strong> مادة في «درجات»</li>
+                    <li><strong data-count="25">٢٥</strong> مادة في «درجات»</li>
                     <li><strong data-count="10">١٠</strong> أجزاء حفظ لكل مستوى</li>
                 </ul>
             </div>
@@ -73,7 +73,7 @@
                     </div>
                     <span class="badge badge--mint">البداية</span>
                     <h3>المدرسة الأثرية</h3>
-                    <p>برنامج «درجات»: تدرُّج علمي في ٢٦ مادة — التوحيد والفقه والحديث واللغة — لخريجي الثانويات وغيرهم.</p>
+                    <p>برنامج «درجات»: البرنامج العلمي التدريجي في ٢٥ مادة — التوحيد والعقيدة والفقه والحديث واللغة وغيرها.</p>
                     <span class="house__more">تعرّف على المدرسة ←</span>
                 </a>
                 <a class="card house card--glow" data-tilt href="{{ route('college') }}">
@@ -82,7 +82,7 @@
                     </div>
                     <span class="badge">التخصص</span>
                     <h3>الكلية الأثرية</h3>
-                    <p>دبلوم العلوم الشرعية، ثم الدبلوم التخصصي أو التأهيلي، ثم المسلكي — بمقررات معتمدة ومجالس تفاعلية.</p>
+                    <p>دبلوم العلوم الشرعية، ثم الدبلوم التخصصي أو التأهيلي، ثم الدبلوم المسلكي — بدراسة تفاعلية وذاتية.</p>
                     <span class="house__more">استعرض الدبلومات ←</span>
                 </a>
                 <a class="card house card--glow" data-tilt href="{{ route('library') }}">
@@ -99,7 +99,7 @@
             <div class="grid grid--2 halls" data-stagger="140">
                 <a class="card hall card--glow" href="{{ route('maqra') }}">
                     <h3>المقرأة الأثرية</h3>
-                    <p>تصحيح التلاوة، وحفظ القرآن كاملًا، وحفظ الأحاديث النبوية على منهج الإمام الألباني.</p>
+                    <p>تصحيح التلاوة، وحفظ القرآن كاملًا، وحفظ الأحاديث النبوية في برنامج الإمام الألباني.</p>
                 </a>
                 <a class="card hall card--glow" href="{{ route('matun') }}">
                     <h3>قسم المتون العلمية</h3>
@@ -156,7 +156,7 @@
                 <h2>برامج مصمَّمة بعناية</h2>
             </div>
             <div class="grid grid--4 stats" data-stagger="120">
-                <div class="card stat"><span class="stat__num" data-count="635">٦٣٥</span><span class="stat__label">مجلسًا في سنتين</span></div>
+                <div class="card stat"><span class="stat__num" data-count="635">٦٣٥</span><span class="stat__label">مجلسًا في دبلوم العلوم الشرعية</span></div>
                 <div class="card stat"><span class="stat__num" data-count="4323" data-sep>٤٬٣٢٣</span><span class="stat__label">حديثًا في برنامج الإمام الألباني</span></div>
                 <div class="card stat"><span class="stat__num" data-count="30">٣٠</span><span class="stat__label">جزءًا في حفظ القرآن كاملًا</span></div>
                 <div class="card stat"><span class="stat__num" data-count="15">١٥</span><span class="stat__label">متنًا في جادة المتعلمين</span></div>
@@ -168,8 +168,8 @@
     <section class="section section--paper">
         <div class="container">
             <blockquote class="quote" data-anim="flip">
-                «مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ»
-                <cite>رواه أبو داود والترمذي من حديث أبي الدرداء رضي الله عنه</cite>
+                «مَنْ سَلَكَ طَرِيقًا يَطْلُبُ فِيهِ عِلْمًا سَلَكَ اللَّهُ بِهِ طَرِيقًا مِنْ طُرُقِ الْجَنَّةِ»
+                <cite>عن أبي الدرداء رضي الله عنه — من مقدمة الدليل الشامل</cite>
             </blockquote>
             <div class="cta" data-anim="fade-up">
                 <h2>جاهز لتبدأ؟</h2>

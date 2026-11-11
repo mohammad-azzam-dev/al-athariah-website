@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'المدرسة الأثرية — برنامج درجات')
-@section('description', 'المدرسة الأثرية: برنامج «درجات» العلمي التدريجي، مدته سنتان، ويؤهلك للالتحاق بدبلوم العلوم الشرعية في الكلية الأثرية.')
+@section('description', 'المدرسة الأثرية: برنامج «درجات» العلمي التدريجي في ٢٥ مادة، ويؤهلك للالتحاق بدبلوم العلوم الشرعية في الكلية الأثرية.')
 
 @push('styles')<link rel="stylesheet" href="{{ asset('css/school.css') }}">@endpush
 @push('scripts')<script src="{{ asset('js/school.js') }}"></script>@endpush
@@ -135,7 +135,7 @@
 
             <p class="school-empty" id="empty-msg" hidden>لا توجد مواد مطابقة لبحثك. جرّب كلمة أخرى أو اختر «الكل».</p>
 
-            <p class="school-footnote" data-anim="zoom">{{ $data['footnote'] }}</p>
+            @if (!empty($data['footnote']))<p class="school-footnote" data-anim="zoom">{{ $data['footnote'] }}</p>@endif
         </div>
     </section>
 
