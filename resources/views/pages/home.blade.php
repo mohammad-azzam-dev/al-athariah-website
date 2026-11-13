@@ -168,8 +168,8 @@
     <section class="section section--paper">
         <div class="container">
             <blockquote class="quote" data-anim="flip">
-                «مَنْ سَلَكَ طَرِيقًا يَطْلُبُ فِيهِ عِلْمًا سَلَكَ اللَّهُ بِهِ طَرِيقًا مِنْ طُرُقِ الْجَنَّةِ»
-                <cite>عن أبي الدرداء رضي الله عنه — من مقدمة الدليل الشامل</cite>
+                «مَن سلَكَ طريقًا يلتَمِسُ فيهِ علمًا، سَهَّلَ اللَّهُ لَهُ طريقًا إلى الجنَّةِ»
+                <cite>رواه مسلم</cite>
             </blockquote>
             <div class="cta" data-anim="fade-up">
                 <h2>جاهز لتبدأ؟</h2>
