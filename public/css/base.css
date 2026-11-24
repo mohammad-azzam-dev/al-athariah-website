@@ -335,3 +335,6 @@ h1, h2, h3, h4, .brand, .eyebrow { word-spacing: .14em; }
 .table-hint svg { width: 18px; height: 18px; animation: hint-nudge 1.6s ease-in-out infinite; }
 @keyframes hint-nudge { 50% { transform: translateX(-5px); } }
 @media (prefers-reduced-motion: reduce) { .table-hint svg { animation: none; } }
+
+/* WhatsApp buttons keep their own style and gain the icon */
+.btn--wa-icon svg { flex-shrink: 0; }

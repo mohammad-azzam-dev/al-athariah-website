@@ -5,6 +5,13 @@ return [
     'short_name' => 'دار العلوم الأثرية',
     'tagline' => 'قسم التعليم عن بُعد',
 
+    // WhatsApp contact: international number, digits only (e.g. 9665XXXXXXXX).
+    // While it is empty, the WhatsApp buttons fall back to their normal page links.
+    'whatsapp' => [
+        'number' => preg_replace('/\D+/', '', (string) env('WHATSAPP_NUMBER', '')),
+        'message' => env('WHATSAPP_MESSAGE', 'السلام عليكم، أودّ الاستفسار عن الدراسة والتسجيل في مجمع دار العلوم الأثرية.'),
+    ],
+
     // Digital copies of library books (admin uploads). Cloudflare R2 by default.
     'books' => [
         'disk' => env('BOOKS_DISK', 'r2'),
