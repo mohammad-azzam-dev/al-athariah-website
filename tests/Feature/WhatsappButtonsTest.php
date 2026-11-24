@@ -27,4 +27,24 @@ class WhatsappButtonsTest extends TestCase
         $this->assertStringContainsString('href="'.route('path').'">ابدأ رحلتك</a>', $html);
         $this->assertStringContainsString('href="'.route('register').'">كيف أسجّل؟</a>', $html);
     }
+
+    public function test_inquiry_form_sends_to_whatsapp_when_a_number_is_set(): void
+    {
+        config(['athariyah.whatsapp.number' => '966500000000']);
+
+        $this->get('/register')->assertOk()
+            ->assertSee('data-wa="966500000000"', false)
+            ->assertSee('إرسال عبر واتساب')
+            ->assertSee('id="inquiryWa"', false);
+    }
+
+    public function test_inquiry_form_shows_a_copy_without_a_number(): void
+    {
+        config(['athariyah.whatsapp.number' => '']);
+
+        $this->get('/register')->assertOk()
+            ->assertDontSee('data-wa=', false)
+            ->assertSee('تجهيز الاستفسار')
+            ->assertDontSee('إرسال عبر واتساب');
+    }
 }

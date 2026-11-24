@@ -117,8 +117,10 @@
             </div>
 
             <div class="card reg-form-card" data-anim="flip">
-                {{-- Front-end only: no action, no CSRF, nothing is sent anywhere. --}}
-                <form id="inquiryForm" novalidate onsubmit="return false">
+                {{-- No server submission: with WHATSAPP_NUMBER set, the message opens in WhatsApp;
+                     without it, the visitor gets a copy of the text to send themselves. --}}
+                @php($waNumber = config('athariyah.whatsapp.number'))
+                <form id="inquiryForm" novalidate onsubmit="return false" @if ($waNumber) data-wa="{{ $waNumber }}" @endif>
                     <div class="field">
                         <label for="fName">الاسم</label>
                         <input id="fName" name="name" type="text" autocomplete="name" required aria-describedby="eName">
@@ -137,14 +139,27 @@
                         <textarea id="fMsg" name="message" rows="5" required aria-describedby="eMsg"></textarea>
                         <p class="field__err" id="eMsg" role="alert"></p>
                     </div>
-                    <button class="btn btn--primary" type="submit">تجهيز الاستفسار</button>
+                    @if ($waNumber)
+                        <button class="btn btn--primary btn--wa-icon" type="submit">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg>
+                            إرسال عبر واتساب
+                        </button>
+                    @else
+                        <button class="btn btn--primary" type="submit">تجهيز الاستفسار</button>
+                    @endif
                 </form>
 
                 <div class="reg-done" id="inquiryDone" role="status" tabindex="-1" hidden>
-                    <h3>جاهز، تبقّت خطوة واحدة</h3>
-                    <p>هذه نسخة من استفسارك. لا يُرسَل النموذج حاليًا إلى أي جهة؛ احتفظ بالنص لإرساله إلى إدارة المجمع.</p>
+                    @if ($waNumber)
+                        <h3>استفسارك جاهز في واتساب</h3>
+                        <p>فتحنا لك واتساب ومعه رسالتك كاملة؛ اضغط «إرسال» هناك. إن لم يُفتح واتساب، استخدم الزر أدناه.</p>
+                    @else
+                        <h3>جاهز، تبقّت خطوة واحدة</h3>
+                        <p>هذه نسخة من استفسارك. لا يُرسَل النموذج حاليًا إلى أي جهة؛ احتفظ بالنص لإرساله إلى إدارة المجمع.</p>
+                    @endif
                     <blockquote class="reg-done__copy" id="inquiryCopy"></blockquote>
                     <div class="reg-done__actions">
+                        @if ($waNumber)<a class="btn btn--primary btn--wa-icon" id="inquiryWa" href="https://wa.me/{{ $waNumber }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg> فتح واتساب</a>@endif
                         <button class="btn btn--ghost" type="button" id="inquiryReset">كتابة استفسار آخر</button>
                     </div>
                 </div>

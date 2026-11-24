@@ -1,4 +1,4 @@
-/* التسجيل والتواصل — front-end only inquiry form (no data is sent anywhere) */
+/* التسجيل والتواصل — inquiry form: opens WhatsApp with the message when a number is set (data-wa), otherwise shows a copy */
 (function () {
   'use strict';
 
@@ -41,10 +41,21 @@
     });
     if (firstBad) { firstBad.focus(); return; }
 
-    copy.textContent =
+    var details =
       'الاسم: ' + document.getElementById('fName').value.trim() + '\n' +
       'المستوى: ' + document.getElementById('fLevel').value + '\n' +
       'الاستفسار: ' + document.getElementById('fMsg').value.trim();
+    copy.textContent = details;
+
+    var wa = form.getAttribute('data-wa');
+    if (wa) {
+      var text = 'السلام عليكم، لدي استفسار عن مجمع دار العلوم الأثرية.\n\n' + details;
+      var url = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(text);
+      var btn = document.getElementById('inquiryWa');
+      if (btn) btn.href = url;
+      // opened from the click itself, so browsers allow it; the button below is the fallback
+      window.open(url, '_blank', 'noopener');
+    }
     form.hidden = true;
     done.hidden = false;
     done.focus();
